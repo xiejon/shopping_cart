@@ -3,19 +3,35 @@
     src: url(../resources/fonts/Bebas_Neue/BebasNeue-Regular.ttf);
 }
 
+@font-face {
+    font-family: 'Poppins';
+    src: url(../resources/fonts/Poppins/Poppins-Medium.ttf);
+}
+
 .nav {
+    font-family: 'Bebas-Neue';
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .logo {
-    font-family: 'Bebas-Neue';
-    font-size: 90px;
+    font-size: 5rem;
 }
 
 .links {
     width: 800px;
     display: flex;
     justify-content: space-evenly;
+}
+
+.a {
+    text-decoration: none;
+    font-size: 3rem;
+    color: black;
+}
+
+.svg {
+    width: 3rem;
+    padding-bottom: 8px;
 }
