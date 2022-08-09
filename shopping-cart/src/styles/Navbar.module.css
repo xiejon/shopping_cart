@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Bebas-Neue';
+    src: url(../resources/fonts/Bebas_Neue/BebasNeue-Regular.ttf);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Bebas-Neue';
+    font-size: 90px;
+}
+
+.links {
+    width: 800px;
+    display: flex;
+    justify-content: space-evenly;
+}
