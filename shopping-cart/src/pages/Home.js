@@ -1,8 +1,11 @@
 import React from 'react'
+import styles from '../styles/Home.module.css'
 
 const Home = () => {
     return(
-        <h1>Home</h1>
+        <div className={styles.container}>
+            <img className={styles.bg} src={require('../resources/images/home-bg.jpg')} alt="tea"></img>     
+        </div>
     )
 }
 

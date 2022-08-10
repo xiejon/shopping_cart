@@ -16,22 +16,25 @@
 }
 
 .logo {
+    margin: 2%;
+    margin-left: 3.5%;
+    /* margin-left: 3rem; */
+    width: 50%;
     font-size: 5rem;
 }
 
 .links {
-    width: 800px;
+    width: 50%;
     display: flex;
     justify-content: space-evenly;
 }
 
-.a {
+.link {
     text-decoration: none;
-    font-size: 3rem;
+    font-size: 4rem;
     color: black;
 }
 
-.svg {
-    width: 3rem;
-    padding-bottom: 8px;
+.cart {
+    align-self: center;
 }
