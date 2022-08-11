@@ -1,53 +1,53 @@
 @font-face {
-    font-family: 'Bebas-Neue';
-    src: url(../resources/fonts/Bebas_Neue/BebasNeue-Regular.ttf);
+  font-family: "Bebas-Neue";
+  src: url(../resources/fonts/Bebas_Neue/BebasNeue-Regular.ttf);
 }
 
 .nav {
-    font-family: 'Bebas-Neue';
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  font-family: "Bebas-Neue";
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-    margin: 2%;
-    margin-left: 3.5%;
-    /* margin-left: 3rem; */
-    width: 50%;
-    font-size: 5rem;
+  margin: 2%;
+  margin-left: 3.5%;
+  /* margin-left: 3rem; */
+  width: 50%;
+  font-size: 5rem;
 }
 
 .links {
-    width: 50%;
-    display: flex;
-    justify-content: space-evenly;
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .link {
-    text-decoration: none;
-    font-size: 4rem;
-    color: black;
+  text-decoration: none;
+  font-size: 4rem;
+  color: black;
 }
 
 .cartBtn {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background-color: transparent;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
 }
 
 .cart {
 }
 
 .quantity {
-    position: absolute;
-    right: 20px;
-    bottom: 27px;
-    z-index: 10;
-    font-family: 'Bebas-Neue';
-    font-size: 22px;
-    font-weight: bold;
+  position: absolute;
+  right: 20px;
+  bottom: 27px;
+  z-index: 10;
+  font-family: "Bebas-Neue";
+  font-size: 22px;
+  font-weight: bold;
 }

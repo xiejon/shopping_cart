@@ -1,19 +1,18 @@
-
 .bg {
-    position: fixed;
-    top: -100px;
-    width: clamp(100%, 180vh, 200vh);
-    z-index: -99;
+  position: fixed;
+  top: -100px;
+  width: clamp(100%, 180vh, 200vh);
+  z-index: -99;
 }
 
 .items {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 33.3%));
-    row-gap: 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 33.3%));
+  row-gap: 4rem;
 }
 
 .itemContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

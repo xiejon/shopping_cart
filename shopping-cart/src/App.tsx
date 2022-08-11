@@ -1,8 +1,8 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Homepage from './pages/Home'
-import Store from './pages/Store'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Homepage from "./pages/Home";
+import Store from "./pages/Store";
 
 function App() {
   return (
