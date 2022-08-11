@@ -1,6 +1,17 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url(../resources/fonts/Montserrat/static/Montserrat-Bold.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Bebas-Neue';
+    src: url(../resources/fonts/Bebas_Neue/BebasNeue-Regular.ttf);
+}
+
 .img {
     width: 400px;
-    border-radius: 900px;
+    border-radius: 0px;
 }
 
 .item {
@@ -14,3 +25,25 @@
     /* background-color: rgba(236, 236, 236, 1); */
     border-radius: 20px;
 }
+
+.info {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Bebas-Neue';
+
+    background-color: rgb(255, 255, 255);
+    /* background-color: rgba(247, 234, 223, 1); */
+}
+
+.title {
+    font-family: 'Bebas-Neue';
+    font-size: 3rem;
+}
+
+.price {
+    font-size: 2rem;
+}
+

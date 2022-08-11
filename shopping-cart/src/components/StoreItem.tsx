@@ -13,8 +13,10 @@ const StoreItem = ({id, name, price, url}: StoreItemProps) => {
     return(
         <div className={styles.item}>
             <img className={styles.img} src={url} alt={name} ></img>
-            <h4>{name}</h4>
-            <p>${price}</p>
+            <div className={styles.info}>
+                <h4 className={styles.title} >{name}</h4>
+                <p className={styles.price} >${price}</p>
+            </div>
         </div>
     )
 }

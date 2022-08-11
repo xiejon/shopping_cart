@@ -9,7 +9,7 @@
 .items {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 33.3%));
-    row-gap: 2rem;
+    row-gap: 4rem;
 }
 
 .itemContainer {
