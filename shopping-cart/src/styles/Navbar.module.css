@@ -30,6 +30,24 @@
     color: black;
 }
 
+.cartBtn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+}
+
 .cart {
-    align-self: center;
+}
+
+.quantity {
+    position: absolute;
+    right: 20px;
+    bottom: 27px;
+    z-index: 10;
+    font-family: 'Bebas-Neue';
+    font-size: 22px;
+    font-weight: bold;
 }
