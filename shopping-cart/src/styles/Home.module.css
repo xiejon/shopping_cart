@@ -1,11 +1,69 @@
+/* @font-face {
+    font-family: 'Montserrat';
+    src: url(../resources/fonts/Montserrat/static/Montserrat-Bold.ttf);
+    font-weight: bold;
+} */
+@font-face {
+    font-family: 'Bebas-Neue';
+    src: url(../resources/fonts/Bebas_Neue/BebasNeue-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Montserrat-italic';
+    src: url(../resources/fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat-italic';
+    font-size: 2.5rem;
+}
+
 .bg {
-    width: 200vh;
-    position: absolute;
+    position: fixed;
     top: 0;
+    width: clamp(100%, 180vh, 200vh);
     z-index: -99;
+    opacity: 0.9;
+}
+
+.main {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7rem;
+}
+
+.quote {
+    margin: 2rem;
+}
+
+.btn {
+    width: 50%;
+    height:  4rem;
+    border: none;
+    font-family: "Bebas-Neue";
+    font-size: 3rem;
+
+    background-color: white;
+}
+
+.btn:hover {
+    font-size: 3.5rem;
+    background-color: rgb(207, 207, 207);
+    transition: 120ms;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
 }

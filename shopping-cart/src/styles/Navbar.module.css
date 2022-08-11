@@ -3,11 +3,6 @@
     src: url(../resources/fonts/Bebas_Neue/BebasNeue-Regular.ttf);
 }
 
-@font-face {
-    font-family: 'Poppins';
-    src: url(../resources/fonts/Poppins/Poppins-Medium.ttf);
-}
-
 .nav {
     font-family: 'Bebas-Neue';
     display: flex;
