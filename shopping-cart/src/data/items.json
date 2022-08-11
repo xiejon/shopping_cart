@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Signature Pu'er",
+        "price": 12,
+        "url": "../resources/images/items/signature-puer.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Green Sanctuary Roast",
+        "price": 10,
+        "url": "../resources/images/items/green-sanctuary-roast.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Buddha's Vert",
+        "price": 12,
+        "url": "../resources/images/items/buddha-vert.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Dragon's Back",
+        "price": 9,
+        "url": "../resources/images/items/dragon-back.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Wild Chrysanthemum",
+        "price": 11,
+        "url": "../resources/images/items/wild-chrysanthemum.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Kunlu Wild",
+        "price": 14,
+        "url": "../resources/images/items/kunlu-wild.jpg"
+    }
+]

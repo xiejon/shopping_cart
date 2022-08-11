@@ -1,0 +1,10 @@
+
+
+
+
+.bg {
+    position: fixed;
+    top: -100px;
+    width: clamp(100%, 180vh, 200vh);
+    z-index: -99;
+}
