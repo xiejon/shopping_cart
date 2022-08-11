@@ -1,4 +1,16 @@
 .img {
-    height: 200px;
-    border-radius: 10px;
+    width: 400px;
+    border-radius: 900px;
+}
+
+.item {
+    width: 450px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    /* background-color: rgba(236, 236, 236, 1); */
+    border-radius: 20px;
 }

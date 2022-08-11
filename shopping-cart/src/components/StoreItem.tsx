@@ -11,7 +11,7 @@ type StoreItemProps = {
 const StoreItem = ({id, name, price, url}: StoreItemProps) => {
 
     return(
-        <div>
+        <div className={styles.item}>
             <img className={styles.img} src={url} alt={name} ></img>
             <h4>{name}</h4>
             <p>${price}</p>
