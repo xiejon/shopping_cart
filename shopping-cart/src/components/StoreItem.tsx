@@ -1,16 +1,21 @@
 import React from 'react'
+import styles from '../styles/StoreItem.module.css'
 
 type StoreItemProps = {
-    id: Number;
-    name: String;
-    price: Number;
-    url: String;
+    id: number;
+    name: string;
+    price: number;
+    url: string;
 }
 
-const StoreItem = () => {
+const StoreItem = ({id, name, price, url}: StoreItemProps) => {
 
     return(
-        <div></div>
+        <div>
+            <img className={styles.img} src={url} alt={name} ></img>
+            <h4>{name}</h4>
+            <p>${price}</p>
+        </div>
     )
 }
 
