@@ -7,7 +7,7 @@ const Store = () => {
     return(
         <div>
             <img className={styles.bg} src={require('../resources/images/store-bg.jpg')} alt="tea"></img>
-            <div></div>
+            <div>{items}</div>
         </div>
     )
 }
