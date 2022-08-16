@@ -5,7 +5,7 @@ import StoreItem from "../components/StoreItem";
 
 const Store = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <img
         className={styles.bg}
         src={require("../resources/images/store-bg.jpg")}

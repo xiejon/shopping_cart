@@ -1,9 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/Navbar.module.css";
+import Cart from './Cart'
 
+type NavbarProps = {
+  
+}
+
+// props: {cart}: NavbarProps
 const Navbar = () => {
+  const [isCartShown, setIsCartShown] = React.useState(false)
+
   return (
+    <>
     <div className={styles.nav}>
       <div className={styles.logo}>
         <h1>Pu'er Tea Co.</h1>
@@ -35,6 +44,12 @@ const Navbar = () => {
         </button>
       </div>
     </div>
+    <div>
+      <Cart 
+        // visibility={isCartShown}
+      />
+    </div>
+    </>
   );
 };
 

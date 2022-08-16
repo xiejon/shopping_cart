@@ -5,6 +5,9 @@ import Homepage from "./pages/Home";
 import Store from "./pages/Store";
 
 function App() {
+  // Fix type error
+  // const [cartItems, setCartItems] = React.useState([1, 2])
+
   return (
     <div className="App">
       <Navbar />
