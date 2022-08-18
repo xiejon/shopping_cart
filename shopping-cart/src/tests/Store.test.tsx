@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Store from "./Store";
+import Store from "../pages/Store";
 
 test("renders 6 item imgs (+ 1 background img)", () => {
   render(<Store />);

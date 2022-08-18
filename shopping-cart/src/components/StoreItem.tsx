@@ -1,4 +1,5 @@
 import React from "react";
+import { useCart } from "../contexts/CartContext";
 import styles from "../styles/StoreItem.module.css";
 
 type StoreItemProps = {
@@ -9,8 +10,10 @@ type StoreItemProps = {
 };
 
 const StoreItem = ({ id, name, price, url }: StoreItemProps) => {
-// const [quantity, setQuantity] = React.useState(0)
+  const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useCart()
   const [areBtnsShown, setAreBtnsShown] = React.useState(false)
+
+  const quantity = getItemQuantity(id)
   
   function showBtns() {
     setAreBtnsShown(true)
@@ -34,16 +37,27 @@ const StoreItem = ({ id, name, price, url }: StoreItemProps) => {
             <div 
               className={styles.btnsContainer} 
 
+              //
               onMouseOver={showBtns}
               onMouseLeave={hideBtns}
-              
+
               style={areBtnsShown ? {"display": "flex"} : {"display": "none"}}
               ><div className={styles.qtyBtnsContainer}>
-                <button className={styles.decrementBtn}>-</button>
-                <div className={styles.quantity}>2</div>
-                <button className={styles.incrementBtn}>+</button>
+                <button 
+                  className={styles.decrementBtn}
+                  onClick={() => decreaseCartQuantity(id)}
+                >-</button>
+                <div className={styles.quantity}>
+                  {quantity}
+                </div>
+                <button 
+                  className={styles.incrementBtn}
+                  onClick={() => increaseCartQuantity(id)}
+                >+</button>
               </div>
-              <button className={styles.addToCartBtn}>Add To Cart</button>
+              <button 
+                className={styles.addToCartBtn}
+                >Add To Cart</button>
             </div>
         </div>
       <div className={styles.info}>

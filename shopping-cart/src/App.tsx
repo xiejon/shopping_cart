@@ -3,17 +3,20 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Homepage from "./pages/Home";
 import Store from "./pages/Store";
+import { CartProvider } from "./contexts/CartContext";
 
 function App() {
 
   return (
-    <div className="App">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/store" element={<Store />} />
-      </Routes>
-    </div>
+    <CartProvider>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/store" element={<Store />} />
+        </Routes>
+      </div>
+    </CartProvider>
   );
 }
 
