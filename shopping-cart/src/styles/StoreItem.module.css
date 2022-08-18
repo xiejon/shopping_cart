@@ -22,9 +22,6 @@
   border-radius: 5px;
   /* box-shadow: 1px 0px 20px 0px rgb(103, 100, 99); */
 }
-.img:hover {
-  opacity: 0.7;
-}
 
 .btnsContainer {
   position: absolute;
@@ -35,9 +32,13 @@
 }
 
 .qtyBtnsContainer {
+  height: 90px;
+  width: 400px; 
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: white;
+  gap: 16px;
 }
 
 .incrementBtn, 
@@ -47,37 +48,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid white;
   background-color: transparent;
-  font-style: 'Montserrat';
-  font-size: 70px;
-  color: white;
-}
-/* .incrementBtn {
-  height: 60px;
+  border: none;
 }
 .decrementBtn {
-  height: 70px;
-} */
+  padding-bottom: 15px;
+  font-size: 100px;
+}
+.incrementBtn {
+  font-size: 90px;
+}
 
 .quantity {
   font-family: 'Bebas-Neue';
   font-size: 80px;
-  color: white;
 }
 
 .addToCartBtn {
-  height: 2rem;
-  width: 200px; 
+  height: 90px;
+  width: 400px; 
   display: flex;
   justify-content: center;
+  align-items: center;
   border: none;
   background-color: transparent;
   font-family: 'Bebas-Neue';
-  font-size: 2rem;
-  color: white;
+  font-size: 3.75rem;
+  color: black;
 }
-
 
 .item {
   width: 450px;
@@ -96,7 +94,6 @@
   align-items: center;
   font-family: "Bebas-Neue";
   background-color: rgb(255, 255, 255);
-  /* box-shadow: 0.3px 3px 10px 0px rgb(157, 153, 151); */
 }
 
 .title {
@@ -108,4 +105,10 @@
 .price {
     padding-bottom: 1rem;
   font-size: 2rem;
+}
+
+.addToCartBtn:hover,
+.decrementBtn:hover, 
+.incrementBtn:hover {
+  cursor: pointer;
 }
