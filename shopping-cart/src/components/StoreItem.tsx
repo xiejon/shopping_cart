@@ -10,26 +10,41 @@ type StoreItemProps = {
 
 const StoreItem = ({ id, name, price, url }: StoreItemProps) => {
 // const [quantity, setQuantity] = React.useState(0)
-  const [isBtnShown, setIsBtnShown] = React.useState(false)
+  const [areBtnsShown, setAreBtnsShown] = React.useState(false)
   
-  function toggleBtn() {
-    setIsBtnShown(prevBool => !prevBool)
+  function showBtns() {
+    setAreBtnsShown(true)
+  }
+
+  function hideBtns() {
+    setAreBtnsShown(false)
   }
     
   return (
     <div className={styles.item}>
-        <div className={styles.imgContainer}>
-            <img 
+        <div 
+          className={styles.imgContainer}
+          onMouseOver={showBtns}
+          onMouseLeave={hideBtns}
+          ><img 
               className={styles.img} 
               src={url} 
               alt={name}
-              onMouseOver={toggleBtn}
-              onMouseLeave={toggleBtn}
               ></img>
-            <button 
-              className={styles.addToCartBtn}
-              style={isBtnShown ? {"display": "flex"} : {"display": "none"}}
-              >Add To Cart</button>
+            <div 
+              className={styles.btnsContainer} 
+
+              onMouseOver={showBtns}
+              onMouseLeave={hideBtns}
+              
+              style={areBtnsShown ? {"display": "flex"} : {"display": "none"}}
+              ><div className={styles.qtyBtnsContainer}>
+                <button className={styles.decrementBtn}>-</button>
+                <div className={styles.quantity}>2</div>
+                <button className={styles.incrementBtn}>+</button>
+              </div>
+              <button className={styles.addToCartBtn}>Add To Cart</button>
+            </div>
         </div>
       <div className={styles.info}>
         <h4 className={styles.title}>{name}</h4>

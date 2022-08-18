@@ -26,9 +26,58 @@
   opacity: 0.7;
 }
 
-.addToCartBtn {
-    position:absolute;
+.btnsContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
+.qtyBtnsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.incrementBtn, 
+.decrementBtn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+  background-color: transparent;
+  font-style: 'Montserrat';
+  font-size: 70px;
+  color: white;
+}
+/* .incrementBtn {
+  height: 60px;
+}
+.decrementBtn {
+  height: 70px;
+} */
+
+.quantity {
+  font-family: 'Bebas-Neue';
+  font-size: 80px;
+  color: white;
+}
+
+.addToCartBtn {
+  height: 2rem;
+  width: 200px; 
+  display: flex;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  font-family: 'Bebas-Neue';
+  font-size: 2rem;
+  color: white;
+}
+
 
 .item {
   width: 450px;
