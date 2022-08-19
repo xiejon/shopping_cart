@@ -1,5 +1,13 @@
 .container {
-    position: absolute;
+    width: clamp(500px, 45%, 1200px);
+    height: 100%;
+    position: fixed;
     top: 0;
     right: 0;
+    background-color: white;
+    z-index: 10000;
+
+    /* temporary */
+    opacity: 0.8;
 }
+

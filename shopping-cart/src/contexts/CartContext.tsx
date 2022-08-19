@@ -10,6 +10,7 @@ type CartContext = {
     increaseCartQuantity: (id: number) => void
     decreaseCartQuantity: (id: number) => void
     removeFromCart: (id: number) => void
+    cartItems: CartItem[]
 }
 
 type CartItem = {
@@ -79,7 +80,8 @@ export function CartProvider({ children }: CartProviderProps) {
                 getItemQuantity, 
                 increaseCartQuantity, 
                 decreaseCartQuantity, 
-                removeFromCart }}>
+                removeFromCart,
+                cartItems }}>
             {children}
         </CartContext.Provider>
     )

@@ -1,16 +1,28 @@
-import React from 'react'
-import styles from '../styles/Cart.module.css'
-import CartItem from './CartItem'
+import React from "react";
+import { useCart } from "../contexts/CartContext";
+import styles from "../styles/Cart.module.css";
+import CartItem from "./CartItem";
 
 const Cart = () => {
-    return(
-        <div className={styles.container}>
-            <h3>Cart</h3>
-            {/* for each item in props 'cart' array, create a CartItem component */}
-            
-            <button>Check Out</button>
-        </div>
-    )
-}
+  const {
+    getCartQuantity,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    removeFromCart,
+    cartItems
+  } = useCart();
 
-export default Cart
+  const items = cartItems
+
+  return (
+    <div className={styles.container}>
+      <h3>Shopping Cart</h3>
+      <div>{items.map(item => <p>{item.id}</p>)}</div>
+
+      <button>Continue Shopping</button>
+      <button>Check Out</button>
+    </div>
+  );
+};
+
+export default Cart;
