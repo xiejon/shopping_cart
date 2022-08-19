@@ -4,14 +4,26 @@ import { useCart } from "../contexts/CartContext";
 import styles from "../styles/Navbar.module.css";
 import Cart from "./Cart";
 
-type NavbarProps = {};
-
-// props: {cart}: NavbarProps
 const Navbar = () => {
   const { getCartQuantity } = useCart();
-  const [isCartShown, setIsCartShown] = React.useState(false);
+  const [isCartOpen, setIsCartOpen] = React.useState(true);
 
   const quantity = getCartQuantity();
+
+  let cartRef = React.useRef<any>(null);
+
+  // Hide cart when area outside of cart is clicked
+  React.useEffect(() => {
+    let handler = (event: any) => {
+      if (!cartRef.current?.contains(event.target as Node)) {
+        setIsCartOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  });
 
   return (
     <>
@@ -46,10 +58,8 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-      <div>
-        <Cart
-        // visibility={isCartShown}
-        />
+      <div ref={cartRef}>
+        <Cart isOpen={isCartOpen} />
       </div>
     </>
   );
