@@ -1,13 +1,24 @@
 import React from 'react'
 import styles from '../styles/CartItem.module.css'
+import storeItems from '../data/items.json'
+import { useCart } from '../contexts/CartContext'
 
-const CartItem = () => {
+type CartItemProps = {
+    id: number,
+    quantity: number
+}
+
+const CartItem = ({id, quantity}: CartItemProps) => {
+    const { removeFromCart } = useCart()
+    const item = storeItems.find(storeItem => storeItem.id === id)
+    if (item == null) return null
+
     return(
         <div>
-            <img>Img</img>
-            <h5>Book</h5>
+            <img src={item.url} alt="tea"></img>
+            <h5>{item.name}</h5>
             <button className={styles.incrementBtn}></button>
-            <input>3</input>
+            
             <button className={styles.decrementBtn}></button>
         </div>
     )
