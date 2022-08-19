@@ -48,7 +48,7 @@ const StoreItem = ({ id, name, price, url }: StoreItemProps) => {
               <button 
                 className={styles.addToCartBtn}
                 onClick={() => increaseCartQuantity(id)}
-              >Add To Cart</button>
+              >+ Add To Cart</button>
             ) : (
               <>
                 <button
@@ -68,10 +68,13 @@ const StoreItem = ({ id, name, price, url }: StoreItemProps) => {
             )}
           </div>
         </div>
-      </div>
-      <div className={styles.info}>
-        <h4 className={styles.title}>{name}</h4>
-        <p className={styles.price}>${price}</p>
+        <div 
+          className={styles.info}
+          style={!areBtnsShown ? { display: "flex" } : {display: "none" }}
+        >
+          <h4 className={styles.title}>{name}</h4>
+          <p className={styles.price}>${price}</p>
+        </div>
       </div>
     </div>
   );
