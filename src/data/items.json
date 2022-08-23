@@ -2,7 +2,7 @@
     {
         "id": 1,
         "name": "Signature Pu'er",
-        "price": 12,
+        "price": 13,
         "url": "/imgs/signature-puer.jpg"
     },
     {
@@ -20,7 +20,7 @@
     {
         "id": 4,
         "name": "Dragon's Back",
-        "price": 9,
+        "price": 10,
         "url": "/imgs/dragon-back.jpg"
     },
     {

@@ -14,7 +14,6 @@
 }
 
 .container {
-  min-width: 1000px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,36 +40,41 @@
   gap: 7rem;
 }
 
-.quote {
-  margin: 3rem 2rem 0rem 2rem;
+.content {
+  margin-left: 5.5%;
+  margin-right: 5.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  gap: 15px;
 }
 
 .btn {
-  padding: 20px;
-  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border: none;
 
   border-radius: 5px;
   font-family: "Bebas-Neue";
-  font-size: 8rem;
+  font-size: 5rem;
   text-align: end;
-  background-color: rgb(61, 43, 31);
-  color: rgb(232,232,232);
+  background-color: transparent;
+  color: black;
+
 }
 
 .btn:hover {
   cursor: pointer;
-  background-color: black;
   transition: 100ms;
+  color: gray;
 }
 
 .link {
-  margin-right: clamp(15%, 35%, 800px);
-  margin-left: 2rem;
-  margin-bottom: 1rem;
-  width: 100%;
+  width: 400px;
   text-decoration: none;
-
   display: flex;
   justify-content: end;
 }

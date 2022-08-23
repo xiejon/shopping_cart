@@ -36,8 +36,8 @@ const Cart = ({ isOpen, setIsCartOpen }: CartProps) => {
       <div className={styles.emptyMsgContainer}>
         <p className={styles.emptyCartMsg}>Your cart is currently empty!</p>
       </div>
-    )
-  }
+    );
+  };
 
   const checkOutBtns = () => {
     return (
@@ -68,16 +68,19 @@ const Cart = ({ isOpen, setIsCartOpen }: CartProps) => {
           })}
         </div>
         <div className={styles.totalPriceContainer}>
-          {cartItems.length > 0
-            ? totalPrice()
-            : emptyCartMsg()}
+          {cartItems.length > 0 ? totalPrice() : emptyCartMsg()}
         </div>
         <div className={styles.checkOutBtns}>
           {cartItems.length > 0 ? (
             checkOutBtns()
           ) : (
             <Link to="/store">
-              <button className={styles.emptyCartBtn} onClick={() => setIsCartOpen(false)}>Return to Shop</button>
+              <button
+                className={styles.emptyCartBtn}
+                onClick={() => setIsCartOpen(false)}
+              >
+                Return to Shop
+              </button>
             </Link>
           )}
         </div>
