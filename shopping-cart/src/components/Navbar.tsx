@@ -6,7 +6,7 @@ import Cart from "./Cart";
 
 const Navbar = () => {
   const { getCartQuantity } = useCart();
-  const [isCartOpen, setIsCartOpen] = React.useState(true);
+  const [isCartOpen, setIsCartOpen] = React.useState(false);
 
   const quantity = getCartQuantity();
 

@@ -39,9 +39,6 @@
   background-color: transparent;
 }
 
-.cart {
-}
-
 .quantity {
   position: absolute;
   right: 20px;
@@ -54,4 +51,13 @@
 
 .link:hover {
   color: gray;
+}
+
+.cartBtn:hover {
+  cursor: pointer;
+  color: gray;
+}
+
+.cart:hover {
+  stroke: gray;
 }

@@ -9,17 +9,20 @@ type CartItemProps = {
 };
 
 const CartItem = ({ id, quantity }: CartItemProps) => {
-  const { removeFromCart } = useCart();
+  const { removeFromCart, increaseCartQuantity, decreaseCartQuantity } = useCart();
   const item = storeItems.find((storeItem) => storeItem.id === id);
   if (item == null) return null;
 
   return (
     <div>
-      <img src={item.url} alt="tea"></img>
+      <img className={styles.photo} src={item.url} alt="tea"></img>
       <h5>{item.name}</h5>
-      <button className={styles.incrementBtn}></button>
+      <div>
+        <button className={styles.decrementBtn} onClick={() => decreaseCartQuantity(id)}>-</button>
+        <div className={styles.quantity}>{quantity}</div>
+        <button className={styles.incrementBtn} onClick={() => increaseCartQuantity(id)}>+</button>
+      </div>
 
-      <button className={styles.decrementBtn}></button>
     </div>
   );
 };
