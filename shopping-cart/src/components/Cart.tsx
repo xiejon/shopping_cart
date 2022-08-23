@@ -30,8 +30,8 @@ const Cart = ({ isOpen }: CartProps) => {
         </div>
 
         <div className={styles.checkOutBtns}>
-          <button>Continue Shopping</button>
-          <button>Check Out</button>
+          <button className={styles.continueShoppingBtn}>Continue Shopping</button>
+          <button className={styles.checkOutBtn}>Check Out</button>
         </div>
       </div>
     </div>

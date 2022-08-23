@@ -1,9 +1,14 @@
 .itemContainer {
+    padding-top: 30px;
+    padding-bottom: 30px;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    /* border-top: 1px solid gray; */
+    border-bottom: 1px solid rgb(177, 177, 177);
+
 }
 
 .itemInfo {
@@ -17,7 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 2rem;
 }
 
 .photo {
@@ -26,12 +31,40 @@
     border-radius: 150px;
 }
 
-.btnsContainer {
-    height: 30px;
-    display: flex;
-    flex-direction: row;
+.name {
+    font-size: 2.5rem;
 }
 
-.name {
+.btnsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.incrementBtn, 
+.decrementBtn {
+    height: 32px;
+    width: 32px;
     font-size: 2rem;
+    border: none;
+}
+
+.quantity {
+    font-size: 2rem;
+    align-self: center;
+    justify-self: center;
+}
+
+.price {
+    margin-right: 1.5rem;
+    font-size: 2.5rem;
+}
+
+
+
+.incrementBtn:hover, 
+.decrementBtn:hover {
+    cursor: pointer;
+    background-color: gray;
+    transition: 100ms;
 }

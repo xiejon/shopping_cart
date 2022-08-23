@@ -36,7 +36,7 @@ const CartItem = ({ id, quantity }: CartItemProps) => {
             +
           </button>
         </div>
-        <div className={styles.price}>{quantity * item.price}</div>
+        <div className={styles.price}>${quantity * item.price}</div>
       </div>
     </div>
   );
