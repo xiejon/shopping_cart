@@ -1,7 +1,7 @@
 import React from "react";
 import { useCart } from "../contexts/CartContext";
 import { Link } from "react-router-dom";
-import storeItems from '../data/items.json'
+import storeItems from "../data/items.json";
 import styles from "../styles/Cart.module.css";
 import CartItem from "./CartItem";
 
@@ -19,6 +19,42 @@ const Cart = ({ isOpen, setIsCartOpen }: CartProps) => {
     cartItems,
   } = useCart();
 
+  const totalPrice = () => {
+    return (
+      <div className={styles.totalPrice}>
+        <span>Total: $</span>
+        {cartItems.reduce((total, cartItem) => {
+          const item = storeItems.find((item) => item.id === cartItem.id);
+          return total + (item?.price || 0) * cartItem.quantity;
+        }, 0)}
+      </div>
+    );
+  };
+
+  const emptyCartMsg = () => {
+    return (
+      <div className={styles.emptyMsgContainer}>
+        <p className={styles.emptyCartMsg}>Your cart is currently empty!</p>
+      </div>
+    )
+  }
+
+  const checkOutBtns = () => {
+    return (
+      <>
+        <Link to="/store">
+          <button
+            className={styles.continueShoppingBtn}
+            onClick={() => setIsCartOpen(false)}
+          >
+            Continue Shopping
+          </button>
+        </Link>
+        <button className={styles.checkOutBtn}>Check Out</button>
+      </>
+    );
+  };
+
   return (
     <div
       className={styles.container}
@@ -31,21 +67,19 @@ const Cart = ({ isOpen, setIsCartOpen }: CartProps) => {
             return <CartItem key={item.id} {...item}></CartItem>;
           })}
         </div>
-          <div className={styles.totalPrice}>Total: 
-
-            {cartItems.reduce((total, cartItem) => {
-              const item = storeItems.find(item => item.id === cartItem.id)
-              return total + (item?.price || 0) * cartItem.quantity
-            },0 )}
-
-          </div>
+        <div className={styles.totalPriceContainer}>
+          {cartItems.length > 0
+            ? totalPrice()
+            : emptyCartMsg()}
+        </div>
         <div className={styles.checkOutBtns}>
-          <Link to="/store">
-            <button className={styles.continueShoppingBtn} onClick={() => setIsCartOpen(false)}>
-              Continue Shopping
-            </button>
-          </Link>
-          <button className={styles.checkOutBtn}>Check Out</button>
+          {cartItems.length > 0 ? (
+            checkOutBtns()
+          ) : (
+            <Link to="/store">
+              <button className={styles.emptyCartBtn} onClick={() => setIsCartOpen(false)}>Return to Shop</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
