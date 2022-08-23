@@ -4,7 +4,7 @@ An e-commerce site for a demo tea shop, built with Typescript and React.
 
 Viewable at https://xiejon.github.io/shopping_cart/
 
-![demo](./src/resources/images/readme.mov)
+![demo](./src/resources/images/readme.gif)
 
 ## Objectives 
 
