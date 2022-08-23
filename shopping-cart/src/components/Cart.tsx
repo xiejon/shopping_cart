@@ -21,15 +21,18 @@ const Cart = ({ isOpen }: CartProps) => {
       className={styles.container}
       style={isOpen ? { display: "flex" } : { display: "none" }}
     >
-      <div>
-        <h3>Shopping Cart</h3>
-        <div>
+      <div className={styles.cartMain}>
+        <h3 className={styles.shoppingCartTitle}>Shopping Cart</h3>
+        <div className={styles.itemsContainer}>
           {cartItems.map((item) => {
             return <CartItem key={item.id} {...item}></CartItem>;
           })}
         </div>
-        <button>Continue Shopping</button>
-        <button>Check Out</button>
+
+        <div className={styles.checkOutBtns}>
+          <button>Continue Shopping</button>
+          <button>Check Out</button>
+        </div>
       </div>
     </div>
   );
