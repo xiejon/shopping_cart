@@ -1,46 +1,27 @@
-# Getting Started with Create React App
+# Pu'Er Tea Co.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An e-commerce site for a demo tea shop, built with Typescript and React.
 
-## Available Scripts
+Viewable at https://xiejon.github.io/shopping_cart/
 
-In the project directory, you can run:
+![demo](./src/resources/images/readme.mov)
 
-### `npm start`
+## Objectives 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Create an e-commerce site using Typescript & React.
+2. Allow user to add & delete items in a shopping cart.
+3. Handle browser routing with 'react-router-dom'. 
+4. Pass data to children components using React Context.
+5. Use CSS modules to improve code organization and reduce naming conflicts.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Challenges 
 
-### `npm test`
+1. Typescript
+    - This was my first project using Typescript. I learnt as I went, googling and reading documentation when I ran into issues. I was motivated to learn Typescript after reading about the advantages of (optional) static typing, type inference, and IntelliSense. Though I at first felt restricted by these new rules, I soon realized that writing code in Typescript helps me develop better habits, which will hopefully carry over into my work on bigger projects. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. React Context
+    - I needed a way to pass shopping cart data (such as item id, quantity, and CRUD methods) far down the component hierarchy. Though I could have stored state in my main App file and then passed it to its children as props, I felt that this was an unideal solution. It meant that various unrelated components along the way would have to also receive the shopping cart state. I briefly looked into Redux as a solution for this, but I ultimately settled on React Context. 
 
-### `npm run build`
+## Areas for Improvement
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Full payment functionality. Though this was beyond the scope of this project, I am keen to explore how to integrate payment processing into the website. 
