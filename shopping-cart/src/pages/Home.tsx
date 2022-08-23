@@ -9,11 +9,11 @@ const Home = () => {
         <h3 className={styles.quote}>
           <em>'A BATH REFRESHES THE BODY, TEA REFRESHES THE MIND.'</em>
         </h3>
-        <button className={styles.btn} type="button">
-          <Link className={styles.link} to="/store">
+        <Link className={styles.link} to="/store">
+          <button className={styles.btn} type="button">
             VISIT THE STORE
-          </Link>
-        </button>
+          </button>
+        </Link>
       </div>
       <img
         className={styles.bg}
