@@ -61,7 +61,7 @@ const Navbar = () => {
         </div>
       </div>
       <div ref={cartRef}>
-        <Cart isOpen={isCartOpen} />
+        <Cart isOpen={isCartOpen} setIsCartOpen={setIsCartOpen}/>
       </div>
     </>
   );
