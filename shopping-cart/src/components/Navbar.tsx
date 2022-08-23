@@ -38,7 +38,9 @@ const Navbar = () => {
           <Link className={styles.link} to="/store">
             Store
           </Link>
-          <button className={styles.cartBtn}>
+          <button 
+            className={styles.cartBtn}
+            onClick={() => setIsCartOpen(true)}>
             <svg
               className={styles.cart}
               xmlns="http://www.w3.org/2000/svg"
