@@ -11,6 +11,13 @@
   border-radius: 5px;
 }
 
+@media only screen and (max-width: 800px) {
+  .img {
+    width: 300px;
+    height: 500px;
+  }
+}
+
 .btnsContainer {
   position: absolute;
   display: flex;
@@ -27,23 +34,27 @@
   justify-content: center;
   background-color: white;
   gap: 16px;
+
+  position: relative;
 }
 
 .incrementBtn, 
 .decrementBtn {
-  width: 40px;
-  height: 40px;
+  font-family: "Helvetica";
+  height: 80px; 
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   background-color: transparent;
   border: none;
 }
+
 .decrementBtn {
   padding-bottom: 15px;
   font-size: 100px;
 }
 .incrementBtn {
+  padding-bottom: 19px;
   font-size: 90px;
 }
 
@@ -86,14 +97,24 @@
   background-color: rgb(255, 255, 255);
 }
 
+@media only screen and (max-width: 800px) {
+  .info {
+    width: 300px;
+  }
+  .qtyBtnsContainer {
+    width: 300px;
+  }
+}
+
 .title {
-    padding-top: 1rem;
+  padding-top: 1rem;
   font-family: "Bebas-Neue";
   font-size: 3rem;
+  text-align: center;
 }
 
 .price {
-    padding-bottom: 1rem;
+  padding-bottom: 1rem;
   font-size: 2rem;
 }
 

@@ -18,7 +18,8 @@
   justify-content: center;
   align-items: center;
   font-family: "Montserrat-italic";
-  font-size: 2.6rem;
+  font-weight: 300;
+  font-size: 2rem;
 }
 
 .bg {
@@ -31,7 +32,6 @@
 
 .main {
   width: 100%;
-  padding-top: 50px;
   height: 400px;
   display: flex;
   flex-direction: column;
@@ -50,20 +50,27 @@
   gap: 15px;
 }
 
+.content > h3 {
+  background-color: white;
+}
+
 .btn {
+  width: 450px;
   display: flex;
   align-items: center;
   justify-content: center;
-
   border: none;
-
-  border-radius: 5px;
   font-family: "Bebas-Neue";
   font-size: 5rem;
   text-align: end;
-  background-color: transparent;
-  color: black;
+  background-color: black;
+  color: white;
+}
 
+@media only screen and (max-width: 800px) {
+  .content {
+    align-items: center;
+  }
 }
 
 .btn:hover {
@@ -73,7 +80,7 @@
 }
 
 .link {
-  width: 400px;
+  width: 450px;
   text-decoration: none;
   display: flex;
   justify-content: end;

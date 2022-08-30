@@ -8,7 +8,6 @@
     align-items: center;
     /* border-top: 1px solid gray; */
     border-bottom: 1px solid rgb(177, 177, 177);
-
 }
 
 .itemInfo {
@@ -60,11 +59,38 @@
     font-size: 2.5rem;
 }
 
-
-
 .incrementBtn:hover, 
 .decrementBtn:hover {
     cursor: pointer;
     background-color: gray;
     transition: 100ms;
+}
+
+@media only screen and (max-width: 800px){
+
+    .photo {
+        height: 70px;
+        width: 50px;
+    }
+    .price {
+        margin-right: 0px;
+    }
+    .name {
+        font-size: 2rem;
+    }
+    .btnsContainer {
+        gap: 5px;
+    }
+    .incrementBtn, 
+    .decrementBtn {
+    height: 22px;
+    width: 22px;
+    font-size: 1.5rem;
+    border: none;
+    }
+    .quantity {
+        font-size: 1.5rem;
+        align-self: center;
+        justify-self: center;
+    }
 }
