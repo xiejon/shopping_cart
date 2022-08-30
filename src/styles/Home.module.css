@@ -67,12 +67,6 @@
   color: white;
 }
 
-@media only screen and (max-width: 800px) {
-  .content {
-    align-items: center;
-  }
-}
-
 .btn:hover {
   cursor: pointer;
   transition: 100ms;
@@ -84,4 +78,17 @@
   text-decoration: none;
   display: flex;
   justify-content: end;
+}
+
+@media only screen and (max-width: 800px) {
+  .content {
+    align-items: center;
+    width: 100%;
+  }
+  .link {
+    width: 100%;
+  }
+  .btn {
+    width: 100%;
+  }
 }

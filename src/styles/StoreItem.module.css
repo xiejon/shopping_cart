@@ -11,13 +11,6 @@
   border-radius: 5px;
 }
 
-@media only screen and (max-width: 800px) {
-  .img {
-    width: 300px;
-    height: 500px;
-  }
-}
-
 .btnsContainer {
   position: absolute;
   display: flex;
@@ -97,15 +90,6 @@
   background-color: rgb(255, 255, 255);
 }
 
-@media only screen and (max-width: 800px) {
-  .info {
-    width: 300px;
-  }
-  .qtyBtnsContainer {
-    width: 300px;
-  }
-}
-
 .title {
   padding-top: 1rem;
   font-family: "Bebas-Neue";
@@ -122,4 +106,17 @@
 .decrementBtn:hover, 
 .incrementBtn:hover {
   cursor: pointer;
+}
+
+@media only screen and (max-width: 650px) {
+  .img {
+    width: 100%;
+    height: 500px;
+  }
+  .info {
+    width: 74.5%;
+  }
+  .qtyBtnsContainer {
+    width: 300px;
+  }
 }
