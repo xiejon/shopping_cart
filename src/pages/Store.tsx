@@ -4,19 +4,36 @@ import styles from "../styles/Store.module.css";
 // import storeItems from "../data/items.json";
 import StoreItem from "../components/StoreItem";
 
-type Item = {
-  id: number;
-  name: string;
-  price: number;
-  url: string;
-};
+const reducer = (state: any, action: any) => {
+  switch (action.type) {
+    case 'FETCH_REQUEST': 
+      return { ...state, loading: true }
+    case 'FETCH_SUCCESS':
+      return { ...state, loading: false, items: action.payload }
+    case 'FETCH_FAIL':
+      return { ...state, loading: false, error: action.payload }
+  }
+}
+
+function getErrorMessage(error: unknown) {
+  if (error instanceof Error) return error.message
+  return String(error)
+}
 
 const Store = () => {
-  const [items, setItems] = React.useState<Item[]>([]);
+  const [{loading, error, items}, dispatch] = React.useReducer(reducer, {
+    items: [], loading: true, error: '',
+  })
+
   React.useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get("/api/products");
-      setItems(result.data);
+      dispatch({type: 'FETCH_REQUEST'})
+      try {
+        const result = await axios.get("/api/products");
+        dispatch({type: 'FETCH_SUCCESS', payload: result.data})
+      } catch (err) {
+        dispatch({type: 'FETCH_FAIL', payload: getErrorMessage(err) })
+      }
     };
     fetchData();
   }, []);
@@ -29,7 +46,7 @@ const Store = () => {
         alt="tea"
       ></img>
       <div className={styles.items}>
-        {items.map((item) => {
+        {items.map((item: any) => {
           return (
             <div className={styles.itemContainer} key={item.id}>
               <StoreItem {...item}></StoreItem>
