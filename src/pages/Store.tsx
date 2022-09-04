@@ -52,7 +52,7 @@ const Store = () => {
       ></img>
       <div className={styles.items}>
         {loading ? (
-          <div>Loading...</div>
+          <div className={styles.loadingText}>Loading...</div>
         ) : error ? (
           <div>{error}</div>
         ) : (
