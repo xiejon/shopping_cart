@@ -3,6 +3,7 @@ import axios from "axios";
 import logger from "use-reducer-logger";
 import styles from "../styles/Store.module.css";
 import StoreItem from "../components/StoreItem";
+import { useStore } from "../contexts/StoreContext";
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
@@ -30,12 +31,20 @@ const Store = () => {
     }
   );
 
+  const { addToInventory } = useStore()
+
   React.useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
       try {
         const result = await axios.get("/api/products");
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
+        
+        // Add items to store context 
+        for (let item of result.data) {
+          addToInventory(item)
+        }
+
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getErrorMessage(err) });
       }
@@ -58,7 +67,7 @@ const Store = () => {
         ) : (
           items.map((item: any) => {
             return (
-              <div className={styles.itemContainer} key={item.id}>
+              <div className={styles.itemContainer} key={item._id}>
                 <StoreItem {...item}></StoreItem>
               </div>
             );

@@ -1,17 +1,20 @@
 import React from "react";
 import styles from "../styles/CartItem.module.css";
-import storeItems from "../data/items.json";
 import { useCart } from "../contexts/CartContext";
+import { useStore } from "../contexts/StoreContext";
 
 type CartItemProps = {
-  id: number;
+  _id: string;
   quantity: number;
 };
 
-const CartItem = ({ id, quantity }: CartItemProps) => {
+const CartItem = ({ _id, quantity }: CartItemProps) => {
   const { removeFromCart, increaseCartQuantity, decreaseCartQuantity } =
     useCart();
-  const item = storeItems.find((storeItem) => storeItem.id === id);
+
+  const { storeItems } = useStore();
+
+  const item = storeItems.find((storeItem) => storeItem._id === _id);
   if (item == null) return null;
 
   return (
@@ -24,14 +27,14 @@ const CartItem = ({ id, quantity }: CartItemProps) => {
         <div className={styles.btnsContainer}>
           <button
             className={styles.decrementBtn}
-            onClick={() => decreaseCartQuantity(id)}
+            onClick={() => decreaseCartQuantity(_id)}
           >
             -
           </button>
           <div className={styles.quantity}>{quantity}</div>
           <button
             className={styles.incrementBtn}
-            onClick={() => increaseCartQuantity(id)}
+            onClick={() => increaseCartQuantity(_id)}
           >
             +
           </button>

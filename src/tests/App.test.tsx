@@ -5,6 +5,7 @@ import App from "../App";
 import Navbar from "../components/Navbar";
 import Store from "../pages/Store";
 import { BrowserRouter } from "react-router-dom" 
+import { useStore } from "../contexts/StoreContext";
 
 test("store renders 6 item imgs (+ 1 background img)", () => {
   render(<BrowserRouter><App /></BrowserRouter>);
@@ -16,5 +17,3 @@ test("store renders 6 item imgs (+ 1 background img)", () => {
   const imgs = screen.getAllByRole("img");
   expect(imgs.length).toEqual(7);
 });
-
-// test("clicking on cart svg renders cart")

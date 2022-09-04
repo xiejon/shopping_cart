@@ -3,13 +3,13 @@ import { useCart } from "../contexts/CartContext";
 import styles from "../styles/StoreItem.module.css";
 
 type StoreItemProps = {
-  id: number;
+  _id: string;
   name: string;
   price: number;
   url: string;
 };
 
-const StoreItem = ({ id, name, price, url }: StoreItemProps) => {
+const StoreItem = ({ _id, name, price, url }: StoreItemProps) => {
   const {
     getItemQuantity,
     increaseCartQuantity,
@@ -18,7 +18,7 @@ const StoreItem = ({ id, name, price, url }: StoreItemProps) => {
   } = useCart();
   const [areBtnsShown, setAreBtnsShown] = React.useState(false);
 
-  const quantity = getItemQuantity(id);
+  const quantity = getItemQuantity(_id);
 
   function showBtns() {
     setAreBtnsShown(true);
@@ -47,20 +47,20 @@ const StoreItem = ({ id, name, price, url }: StoreItemProps) => {
             {quantity === 0 ? (
               <button 
                 className={styles.addToCartBtn}
-                onClick={() => increaseCartQuantity(id)}
+                onClick={() => increaseCartQuantity(_id)}
               >+ Add To Cart</button>
             ) : (
               <>
                 <button
                   className={styles.decrementBtn}
-                  onClick={() => decreaseCartQuantity(id)}
+                  onClick={() => decreaseCartQuantity(_id)}
                 >
                   -
                 </button>
                 <div className={styles.quantity}>{quantity}</div>
                 <button
                   className={styles.incrementBtn}
-                  onClick={() => increaseCartQuantity(id)}
+                  onClick={() => increaseCartQuantity(_id)}
                 >
                   +
                 </button>

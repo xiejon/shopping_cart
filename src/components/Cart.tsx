@@ -1,9 +1,9 @@
 import React from "react";
 import { useCart } from "../contexts/CartContext";
 import { Link, useNavigate } from "react-router-dom";
-import storeItems from "../data/items.json";
 import styles from "../styles/Cart.module.css";
 import CartItem from "./CartItem";
+import { useStore } from "../contexts/StoreContext";
 
 type CartProps = {
   isOpen: boolean;
@@ -12,20 +12,21 @@ type CartProps = {
 
 const Cart = ({ isOpen, setIsCartOpen }: CartProps) => {
   const navigate = useNavigate()
+
   const {
-    getCartQuantity,
-    increaseCartQuantity,
-    decreaseCartQuantity,
-    removeFromCart,
     cartItems,
   } = useCart();
+
+  const {
+    storeItems
+  } = useStore()
 
   const totalPrice = () => {
     return (
       <div className={styles.totalPrice}>
         <span>Total: $</span>
         {cartItems.reduce((total, cartItem) => {
-          const item = storeItems.find((item) => item.id === cartItem.id);
+          const item = storeItems.find((item) => item._id === cartItem._id);
           return total + (item?.price || 0) * cartItem.quantity;
         }, 0)}
       </div>
@@ -74,7 +75,7 @@ const Cart = ({ isOpen, setIsCartOpen }: CartProps) => {
         <h3 className={styles.shoppingCartTitle}>Shopping Cart</h3>
         <div className={styles.itemsContainer}>
           {cartItems.map((item) => {
-            return <CartItem key={item.id} {...item}></CartItem>;
+            return <CartItem key={item._id} {...item}></CartItem>;
           })}
         </div>
         <div className={styles.totalPriceContainer}>
