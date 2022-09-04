@@ -14,7 +14,7 @@ const SignIn = () => {
         src={require("../resources/images/store-bg.jpg")}
         alt="tea"
       ></img>
-      <h2 className={styles.header}>Sign In</h2>
+      <h2 className={styles.header}>My Account</h2>
       <form action="/signin" method="post" id="signin" className={styles.form}>
         <div className={styles.field}>
           <label htmlFor="email">Email</label>
@@ -37,7 +37,7 @@ const SignIn = () => {
           />
         </div>
         <div className={styles.submit}>
-          <button type="submit">Sign In</button>
+          <button type="submit">Log In</button>
         </div>
         <div className={styles.createAccount}>
           <div>New Customer?</div>
