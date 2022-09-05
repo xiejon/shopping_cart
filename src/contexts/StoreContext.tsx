@@ -7,6 +7,7 @@ type StoreProviderProps = {
 
 type StoreContext = {
   addToInventory: (item: StoreItem) => void;
+  setUser: (data: UserData) => void;
   storeItems: StoreItem[];
 };
 
@@ -17,6 +18,14 @@ type StoreItem = {
   url: string;
 };
 
+type UserData = {
+  email: string;
+  isAdmin: boolean;
+  name: string;
+  token: string;
+  _id: string;
+};
+
 const StoreContext = createContext({} as StoreContext);
 
 export function useStore() {
@@ -25,13 +34,19 @@ export function useStore() {
 
 export function StoreProvider({ children }: StoreProviderProps) {
   const [storeItems, setStoreItems] = React.useState<StoreItem[]>([]);
+  const [userInfo, setUserInfo] = React.useState<UserData>();
 
   function addToInventory(item: StoreItem) {
     setStoreItems((prevItems) => [...prevItems, item]);
   }
 
+  function setUser(data: UserData) {
+    setUserInfo(userInfo);
+    console.log(userInfo)
+  }
+
   return (
-    <StoreContext.Provider value={{ storeItems, addToInventory }}>
+    <StoreContext.Provider value={{ storeItems, setUser, addToInventory }}>
       {children}
     </StoreContext.Provider>
   );
