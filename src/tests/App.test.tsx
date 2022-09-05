@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { CartProvider } from '../contexts/CartContext'
 import App from "../App";
 import Navbar from "../components/Navbar";
-import Store from "../pages/Store";
+import Store from "../components/Store";
 import { BrowserRouter } from "react-router-dom" 
 import { useStore } from "../contexts/StoreContext";
 

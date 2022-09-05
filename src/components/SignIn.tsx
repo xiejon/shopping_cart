@@ -1,15 +1,17 @@
 import React from "react";
 import styles from "../styles/SignIn.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { Link, useLocation } from "react-router-dom";
 import { useStore } from "../contexts/StoreContext";
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const { search } = useLocation();
   const redirectInURL = new URLSearchParams(search).get("redirect");
   const redirect = redirectInURL ? redirectInURL : "/";
 
-  const { setUser } = useStore()
+  const { setUser } = useStore();
 
   const [email, setEmail] = React.useState<String>("");
   const [password, setPassword] = React.useState<String>("");
@@ -21,8 +23,11 @@ const SignIn = () => {
         email,
         password,
       });
-      setUser(data)
-    } catch (err){
+      setUser(data);
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      navigate(redirect || "/");
+    } catch (err) {
+      alert("Invalid email or password");
     }
   };
 

@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
+import { useStore } from "../contexts/StoreContext";
 import styles from "../styles/Navbar.module.css";
 import Cart from "./Cart";
 
 const Navbar = () => {
   const { getCartQuantity } = useCart();
   const [isCartOpen, setIsCartOpen] = React.useState(false);
+
+  const { userInfo } = useStore()
 
   const quantity = getCartQuantity();
 
@@ -38,9 +41,13 @@ const Navbar = () => {
           <Link className={styles.link} to="/store">
             Store
           </Link>
-          <button 
+          <Link className={styles.link} to={userInfo ? '/account' : '/signin'}>
+            Account
+          </Link>
+          <button
             className={styles.cartBtn}
-            onClick={() => setIsCartOpen(true)}>
+            onClick={() => setIsCartOpen(true)}
+          >
             <svg
               className={styles.cart}
               xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +68,7 @@ const Navbar = () => {
         </div>
       </div>
       <div ref={cartRef}>
-        <Cart isOpen={isCartOpen} setIsCartOpen={setIsCartOpen}/>
+        <Cart isOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
       </div>
     </>
   );
