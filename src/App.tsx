@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Homepage from "./components/Home";
 import Store from "./components/Store";
-
+import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import { StoreProvider } from "./contexts/StoreContext";
 import Account from "./components/Account";
@@ -20,6 +20,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/store" element={<Store />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/shipping" element={<ShippingAddressScreen />} />
           <Route path="/account" element={<Account />} />
         </Routes>

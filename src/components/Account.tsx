@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Account = () => {
-  const { userInfo, signOut, clearCart } = useStore();
+  const { userInfo, signOut } = useStore();
 
   const navigate = useNavigate();
 
@@ -17,7 +17,10 @@ const Account = () => {
 
   const signOutHandler = () => {
     signOut();
-    clearCart();
+
+    localStorage.removeItem('cartItems')
+    localStorage.removeItem('userInfo')
+    localStorage.removeItem('shippingAddress')
   };
 
   return (

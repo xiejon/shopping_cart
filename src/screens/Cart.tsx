@@ -12,7 +12,7 @@ type CartProps = {
 const Cart = ({ isOpen, setIsCartOpen }: CartProps) => {
   const navigate = useNavigate();
 
-  const { cartItems, storeItems } = useStore();
+  const { cartItems, storeItems, userInfo } = useStore();
 
   const totalPrice = () => {
     return (
@@ -35,7 +35,11 @@ const Cart = ({ isOpen, setIsCartOpen }: CartProps) => {
   };
 
   const checkoutHandler = () => {
-    navigate("/signin?redirect=/shipping");
+    if (userInfo) {
+      navigate("/shipping");
+    } else {
+      navigate("/signin?redirect=/shipping");
+    }
   };
 
   const checkOutBtns = () => {

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, ReactNode } from "react";
-import Store from "../components/Store";
+import Store from "../screens/Store";
 
 type StoreProviderProps = {
   children: ReactNode;
@@ -10,9 +10,11 @@ type StoreContext = {
   setUser: (data: UserData) => void;
   signOut: () => void;
   updateCartAddress: (address: Address) => void;
+  setPaymentMethod: (paymentMethod: string) => void;
   storeItems: StoreItem[];
   userInfo: UserData;
   shippingAddress: Address;
+  paymentMethod: string;
 
   // cart methods
   getCartQuantity: () => number;
@@ -20,7 +22,6 @@ type StoreContext = {
   increaseCartQuantity: (_id: string) => void;
   decreaseCartQuantity: (_id: string) => void;
   removeFromCart: (_id: string) => void;
-  clearCart: () => void;
   cartItems: CartItem[];
 };
 
@@ -57,6 +58,7 @@ type CartItem = {
   quantity: number;
 };
 
+
 const defaultAddress = {
   firstName: "",
   lastName: "",
@@ -74,9 +76,17 @@ export function useStore() {
 
 export function StoreProvider({ children }: StoreProviderProps) {
   const [storeItems, setStoreItems] = React.useState<StoreItem[]>([]);
-  const [userInfo, setUserInfo] = React.useState<UserData | any>(null);
-  const [shippingAddress, setShippingAddress] =
-    React.useState<Address>(defaultAddress);
+  const [userInfo, setUserInfo] = React.useState<UserData | any>(
+    localStorage.getItem("userInfo")
+      ? JSON.parse(localStorage.getItem("userInfo")!)
+      : null
+  );
+  const [shippingAddress, setShippingAddress] = React.useState<Address>(
+    localStorage.getItem("shippingAddress")
+      ? JSON.parse(localStorage.getItem("shippingAddress")!)
+      : defaultAddress
+  );
+  const [paymentMethod, setPaymentMethod] = React.useState<string>('')
   const [cartItems, setCartItems] = React.useState<CartItem[]>(
     localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems")!)
@@ -108,6 +118,7 @@ export function StoreProvider({ children }: StoreProviderProps) {
   function signOut() {
     setUserInfo(null);
     setShippingAddress(defaultAddress);
+    setCartItems([]);
   }
 
   function updateCartAddress(newAddress: Address) {
@@ -161,26 +172,23 @@ export function StoreProvider({ children }: StoreProviderProps) {
     });
   }
 
-  function clearCart() {
-    setCartItems([])
-  }
-
   return (
     <StoreContext.Provider
       value={{
         storeItems,
         userInfo,
         shippingAddress,
+        paymentMethod,
         setUser,
         signOut,
         addToInventory,
         updateCartAddress,
+        setPaymentMethod,
         getCartQuantity,
         getItemQuantity,
         increaseCartQuantity,
         decreaseCartQuantity,
         removeFromCart,
-        clearCart,
         cartItems,
       }}
     >
