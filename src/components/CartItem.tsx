@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "../styles/CartItem.module.css";
-import { useCart } from "../contexts/CartContext";
 import { useStore } from "../contexts/StoreContext";
 
 type CartItemProps = {
@@ -9,10 +8,12 @@ type CartItemProps = {
 };
 
 const CartItem = ({ _id, quantity }: CartItemProps) => {
-  const { removeFromCart, increaseCartQuantity, decreaseCartQuantity } =
-    useCart();
-
-  const { storeItems } = useStore();
+  const {
+    removeFromCart,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    storeItems,
+  } = useStore();
 
   const item = storeItems.find((storeItem) => storeItem._id === _id);
   if (item == null) return null;

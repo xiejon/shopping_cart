@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Account = () => {
-  const { userInfo, signOut } = useStore();
+  const { userInfo, signOut, clearCart } = useStore();
 
   const navigate = useNavigate();
 
@@ -14,6 +14,11 @@ const Account = () => {
       navigate("/signin");
     }
   });
+
+  const signOutHandler = () => {
+    signOut();
+    clearCart();
+  };
 
   return (
     <div className={styles.container}>
@@ -35,7 +40,7 @@ const Account = () => {
           </div>
         </div>
         <div className={styles.signOut}>
-          <button className={styles.signOutBtn} onClick={() => signOut()}>
+          <button className={styles.signOutBtn} onClick={signOutHandler}>
             Log Out
           </button>
         </div>

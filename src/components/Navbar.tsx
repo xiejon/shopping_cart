@@ -1,15 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "../contexts/CartContext";
 import { useStore } from "../contexts/StoreContext";
 import styles from "../styles/Navbar.module.css";
 import Cart from "./Cart";
 
 const Navbar = () => {
-  const { getCartQuantity } = useCart();
   const [isCartOpen, setIsCartOpen] = React.useState(false);
 
-  const { userInfo } = useStore()
+  const { userInfo, getCartQuantity } = useStore()
 
   const quantity = getCartQuantity();
 

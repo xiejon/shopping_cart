@@ -1,6 +1,5 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { CartProvider } from '../contexts/CartContext'
 import App from "../App";
 import Navbar from "../components/Navbar";
 import Store from "../components/Store";

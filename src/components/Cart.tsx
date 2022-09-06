@@ -1,5 +1,4 @@
 import React from "react";
-import { useCart } from "../contexts/CartContext";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Cart.module.css";
 import CartItem from "./CartItem";
@@ -11,15 +10,9 @@ type CartProps = {
 };
 
 const Cart = ({ isOpen, setIsCartOpen }: CartProps) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const {
-    cartItems,
-  } = useCart();
-
-  const {
-    storeItems
-  } = useStore()
+  const { cartItems, storeItems } = useStore();
 
   const totalPrice = () => {
     return (
@@ -42,8 +35,8 @@ const Cart = ({ isOpen, setIsCartOpen }: CartProps) => {
   };
 
   const checkoutHandler = () => {
-    navigate('/signin?redirect=/shipping')
-  }
+    navigate("/signin?redirect=/shipping");
+  };
 
   const checkOutBtns = () => {
     return (
@@ -56,12 +49,15 @@ const Cart = ({ isOpen, setIsCartOpen }: CartProps) => {
             Continue Shopping
           </button>
         </Link>
-        <button className={styles.checkOutBtn}
+        <button
+          className={styles.checkOutBtn}
           onClick={() => {
-            checkoutHandler()
-            setIsCartOpen(false)
+            checkoutHandler();
+            setIsCartOpen(false);
           }}
-        >Check Out</button>
+        >
+          Check Out
+        </button>
       </>
     );
   };

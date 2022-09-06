@@ -1,5 +1,5 @@
 import React from "react";
-import { useCart } from "../contexts/CartContext";
+import { useStore } from "../contexts/StoreContext";
 import styles from "../styles/StoreItem.module.css";
 
 type StoreItemProps = {
@@ -15,7 +15,7 @@ const StoreItem = ({ _id, name, price, url }: StoreItemProps) => {
     increaseCartQuantity,
     decreaseCartQuantity,
     removeFromCart,
-  } = useCart();
+  } = useStore();
   const [areBtnsShown, setAreBtnsShown] = React.useState(false);
 
   const quantity = getItemQuantity(_id);
