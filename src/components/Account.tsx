@@ -28,7 +28,7 @@ const Account = () => {
         </div>
         <div className={styles.links}>
           <div className={styles.editProfile}>
-            <Link to="/">Edit Profile</Link>
+            <Link to="/">Profile</Link>
           </div>
           <div className={styles.orders}>
             <Link to="/">Orders</Link>
