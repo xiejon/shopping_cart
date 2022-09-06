@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "../styles/ShippingAddressScreen.module.css";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../contexts/CartContext";
 
 type Name = {
   firstName: string;
@@ -25,8 +27,14 @@ const ShippingAddressScreen = () => {
     zipCode: "",
   });
 
+  const navigate = useNavigate()
+  const {updateCartAddress} = useCart()
+
   const submitHandler = (e: any) => {
     e.preventDefault();
+
+    updateCartAddress(address)
+    navigate('/payment')
   };
 
   return (
@@ -97,6 +105,7 @@ const ShippingAddressScreen = () => {
               <div className={styles.field}>
                 <label htmlFor="state">State</label>
                 <select
+                className={styles.state}
                   onChange={(e) =>
                     setAddress({ ...address, state: e.target.value } as Address)
                   }
