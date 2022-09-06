@@ -8,6 +8,7 @@ type StoreProviderProps = {
 type StoreContext = {
   addToInventory: (item: StoreItem) => void;
   setUser: (data: UserData) => void;
+  signOut: () => void;
   storeItems: StoreItem[];
   userInfo: UserData;
 };
@@ -42,11 +43,23 @@ export function StoreProvider({ children }: StoreProviderProps) {
   }
 
   function setUser(data: UserData) {
-    setUserInfo(data)
+    setUserInfo(data);
+  }
+
+  function signOut() {
+    setUserInfo(null);
   }
 
   return (
-    <StoreContext.Provider value={{ storeItems, userInfo, setUser, addToInventory }}>
+    <StoreContext.Provider
+      value={{
+        storeItems,
+        userInfo,
+        setUser,
+        signOut,
+        addToInventory,
+      }}
+    >
       {children}
     </StoreContext.Provider>
   );

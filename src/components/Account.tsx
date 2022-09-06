@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Account = () => {
-  const { userInfo } = useStore();
+  const { userInfo, signOut } = useStore();
 
   const navigate = useNavigate();
 
@@ -27,8 +27,17 @@ const Account = () => {
           Welcome Back, {userInfo ? userInfo.name : null}
         </div>
         <div className={styles.links}>
-            <div className={styles.editProfile}><Link to="/">Edit Profile</Link></div>
-            <div className={styles.orders}><Link to="/">Orders</Link></div>
+          <div className={styles.editProfile}>
+            <Link to="/">Edit Profile</Link>
+          </div>
+          <div className={styles.orders}>
+            <Link to="/">Orders</Link>
+          </div>
+        </div>
+        <div className={styles.signOut}>
+          <button className={styles.signOutBtn} onClick={() => signOut()}>
+            Log Out
+          </button>
         </div>
       </div>
     </div>
