@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  justify-content: center;
+  font-family: "Bebas-Neue";
+}
+
+.bg {
+  position: fixed;
+  top: -100px;
+  width: clamp(100%, 180vh, 200vh);
+  opacity: 0.3;
+  z-index: -99;
+}
+
+.main {
+  width: 100%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: white;
+}
+
+.main > h3 {
+  font-size: 3rem;
+}
+
+.form {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field > label {
+  font-size: 2rem;
+}
+
+.field > input {
+  height: 1.1rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  outline: none;
+  border: 1px solid gray;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: rgb(83, 82, 82);
+}
+
+.name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.name > div {
+  width: 100%;
+}
+
+.stateAndZip {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
+.stateAndZip > div {
+  width: 100%;
+}
+
+.submitBtn {
+  width: 20rem;
+  height: 2.25rem;
+  justify-self: center;
+  align-self: center;
+  border: none;
+  border-radius: 15px;
+  background-color: black;
+  font-family: "Bebas-Neue";
+  font-size: 2rem;
+  color: white;
+}
+
+.submitBtn:hover {
+  cursor: pointer;
+  background-color: gray;
+  transition: 100ms;
+}
