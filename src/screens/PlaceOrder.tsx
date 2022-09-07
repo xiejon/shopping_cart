@@ -19,11 +19,10 @@ const reducer = (state: any, action: any) => {
 };
 
 const PlaceOrder = () => {
-  const [{ loading: boolean, error: any }, dispatch] = React.useReducer(
+  const [{ loading: boolean }, dispatch] = React.useReducer(
     reducer,
     {
       loading: false,
-      error: "",
     }
   );
 
@@ -56,13 +55,17 @@ const PlaceOrder = () => {
       const { data } = await axios.post(
         "/api/orders",
         {
-          orderItems: cartItems,
+          orderItems: cartItems.map(cartItem => {
+            const item = storeItems.find(storeItem => storeItem._id === cartItem._id)
+            return {...item, quantity: cartItem.quantity}
+          }),
           shippingAddress: shippingAddress,
           paymentMethod: paymentMethod,
           itemsCost: getTotalPrice(),
           shippingCost: shippingCost,
           taxCost: taxCost,
           totalPrice: getTotalPrice() + taxCost + shippingCost,
+          user: userInfo
         },
 
         {
@@ -137,7 +140,7 @@ const PlaceOrder = () => {
             <h2 className={styles.paymentHeader}>Payment Type:</h2>
             <div className={styles.paymentInfo}>
               <div className={styles.field}>
-                <span>{paymentMethod.replace(/["']/g, "")}</span>
+                <span>{paymentMethod.replace(/\W/g, "")}</span>
               </div>
               <Link
                 to={`/payment?redirect=${redirect}`}
