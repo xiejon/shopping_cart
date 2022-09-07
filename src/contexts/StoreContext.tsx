@@ -1,6 +1,4 @@
 import React, { createContext, useContext, ReactNode } from "react";
-import styles from "../styles/Cart.module.css"
-import Store from "../screens/Store";
 
 type StoreProviderProps = {
   children: ReactNode;
@@ -18,6 +16,7 @@ type StoreContext = {
   paymentMethod: string;
 
   // cart methods
+  clearCart: () => void;
   getCartQuantity: () => number;
   getItemQuantity: (_id: string) => number;
   increaseCartQuantity: (_id: string) => void;
@@ -132,12 +131,11 @@ export function StoreProvider({ children }: StoreProviderProps) {
     setUserInfo(null);
     setShippingAddress(defaultAddress);
     setPaymentMethod("");
-    setCartItems([]);
+    clearCart();
 
     localStorage.removeItem("userInfo");
     localStorage.removeItem("shippingAddress");
     localStorage.removeItem("paymentMethod");
-    localStorage.removeItem("cartItems");
   }
 
   function updateCartAddress(newAddress: Address) {
@@ -191,6 +189,11 @@ export function StoreProvider({ children }: StoreProviderProps) {
     });
   }
 
+  function clearCart() {
+    setCartItems([])
+    localStorage.removeItem("cartItems")
+  }
+
   function getTax(tax: number, totalCost: number) {
     return totalCost * tax
   }
@@ -215,6 +218,7 @@ export function StoreProvider({ children }: StoreProviderProps) {
         addToInventory,
         updateCartAddress,
         setPaymentMethod,
+        clearCart,
         getCartQuantity,
         getItemQuantity,
         increaseCartQuantity,

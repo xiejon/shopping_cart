@@ -3,8 +3,30 @@ import styles from "../styles/PlaceOrder.module.css";
 import { useStore } from "../contexts/StoreContext";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import CartItem from "../components/CartItem";
+import axios from "axios";
+
+const reducer = (state: any, action: any) => {
+  switch (action.type) {
+    case "CREATE_REQUEST":
+      return { ...state, loading: true };
+    case "CREATE_SUCCESS":
+      return { ...state, loading: false };
+    case "CREATE_FAIL":
+      return { ...state, loading: false };
+    default:
+      return state;
+  }
+};
 
 const PlaceOrder = () => {
+  const [{ loading: boolean, error: any }, dispatch] = React.useReducer(
+    reducer,
+    {
+      loading: false,
+      error: "",
+    }
+  );
+
   const navigate = useNavigate();
   const { search } = useLocation();
   const redirectInURL = new URLSearchParams(search).get("redirect");
@@ -15,13 +37,49 @@ const PlaceOrder = () => {
     paymentMethod,
     cartItems,
     storeItems,
+    clearCart,
     getTax,
     getTotalPrice,
   } = useStore();
 
-  const submitHandler = (e: any) => {
+  React.useEffect(() => {
+    if (!paymentMethod) {
+      navigate("/payment");
+    }
+  }, [paymentMethod, navigate]);
+
+  const submitHandler = async (e: any) => {
     e.preventDefault();
-    navigate("/success")
+    try {
+      dispatch({ type: "CREATE_REQUEST" });
+
+      const { data } = await axios.post(
+        "/api/orders",
+        {
+          orderItems: cartItems,
+          shippingAddress: shippingAddress,
+          paymentMethod: paymentMethod,
+          itemsCost: getTotalPrice(),
+          shippingCost: shippingCost,
+          taxCost: taxCost,
+          totalPrice: getTotalPrice() + taxCost + shippingCost,
+        },
+
+        {
+          headers: {
+            authorization: `Bearer: ${userInfo.token}`,
+          },
+        }
+      );
+
+      clearCart()
+      dispatch({type: "CREATE_SUCCESS"})
+
+      navigate(`/order/${data.order._id}`);
+    } catch (err) {
+      dispatch({ type: "CREATE_FAIL" });
+      alert(err);
+    }
   };
 
   const findOrderItem = (_id: string) => {
@@ -29,9 +87,13 @@ const PlaceOrder = () => {
     return item;
   };
 
+  const roundNum = (num: number) =>
+    Math.round(num * 100 + Number.EPSILON) / 100;
+
   // Sample tax value
-  let tax = 0.08;
-  let taxCost = getTax(tax, getTotalPrice());
+  const tax = 0.08;
+  const taxCost = getTax(tax, getTotalPrice());
+  const shippingCost = getTotalPrice() > 30 ? 0 : 5;
 
   return (
     <div className={styles.container}>
@@ -104,12 +166,15 @@ const PlaceOrder = () => {
                     );
                 })}
               </div>
+              <div className={styles.shipping}>
+                {`Shipping: ${shippingCost > 0 ? shippingCost : "FREE"}`}
+              </div>
               <div className={styles.tax}>{`Tax: $${taxCost}`}</div>
               <div className={styles.field}>
                 {cartItems ? (
                   <div className={styles.totalPrice}>
                     <span>Total: $</span>
-                    {getTotalPrice() + taxCost}
+                    {roundNum(getTotalPrice() + taxCost + shippingCost)}
                   </div>
                 ) : null}
               </div>
@@ -117,11 +182,13 @@ const PlaceOrder = () => {
           </div>
         </div>
       </div>
-      <div className={styles.placeOrderBtn}>
-        <button type="button" onClick={submitHandler}>
-          Place Order
-        </button>
-      </div>
+      <button
+        type="button"
+        onClick={submitHandler}
+        className={styles.placeOrderBtn}
+      >
+        Place Order
+      </button>
     </div>
   );
 };
