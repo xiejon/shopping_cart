@@ -19,18 +19,17 @@ const reducer = (state: any, action: any) => {
 };
 
 const PlaceOrder = () => {
-  const [{ loading: boolean }, dispatch] = React.useReducer(
-    reducer,
-    {
-      loading: false,
-    }
-  );
+  const [{ loading: boolean }, dispatch] = React.useReducer(reducer, {
+    loading: false,
+  });
 
   const navigate = useNavigate();
   const { search } = useLocation();
   const redirectInURL = new URLSearchParams(search).get("redirect");
   const redirect = redirectInURL ? redirectInURL : "/";
   const {
+    taxCost,
+    shippingCost,
     shippingAddress,
     userInfo,
     paymentMethod,
@@ -55,9 +54,11 @@ const PlaceOrder = () => {
       const { data } = await axios.post(
         "/api/orders",
         {
-          orderItems: cartItems.map(cartItem => {
-            const item = storeItems.find(storeItem => storeItem._id === cartItem._id)
-            return {...item, quantity: cartItem.quantity}
+          orderItems: cartItems.map((cartItem) => {
+            const item = storeItems.find(
+              (storeItem) => storeItem._id === cartItem._id
+            );
+            return { ...item, quantity: cartItem.quantity };
           }),
           shippingAddress: shippingAddress,
           paymentMethod: paymentMethod,
@@ -65,7 +66,7 @@ const PlaceOrder = () => {
           shippingCost: shippingCost,
           taxCost: taxCost,
           totalPrice: getTotalPrice() + taxCost + shippingCost,
-          user: userInfo
+          user: userInfo,
         },
 
         {
@@ -75,10 +76,10 @@ const PlaceOrder = () => {
         }
       );
 
-      clearCart()
-      dispatch({type: "CREATE_SUCCESS"})
+      clearCart();
+      dispatch({ type: "CREATE_SUCCESS" });
 
-      navigate(`/order/${data.order._id}`);
+      navigate(`/orders/${data.order._id}`);
     } catch (err) {
       dispatch({ type: "CREATE_FAIL" });
       alert(err);
@@ -92,11 +93,6 @@ const PlaceOrder = () => {
 
   const roundNum = (num: number) =>
     Math.round(num * 100 + Number.EPSILON) / 100;
-
-  // Sample tax value
-  const tax = 0.08;
-  const taxCost = getTax(tax, getTotalPrice());
-  const shippingCost = getTotalPrice() > 30 ? 0 : 5;
 
   return (
     <div className={styles.container}>

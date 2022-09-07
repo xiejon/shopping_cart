@@ -14,6 +14,8 @@ type StoreContext = {
   userInfo: UserData;
   shippingAddress: Address;
   paymentMethod: string;
+  taxCost: number,
+  shippingCost: number,
 
   // cart methods
   clearCart: () => void;
@@ -96,6 +98,11 @@ export function StoreProvider({ children }: StoreProviderProps) {
       ? JSON.parse(localStorage.getItem("cartItems")!)
       : []
   );
+
+  // Sample tax value
+  const tax = 0.08;
+  const taxCost = getTax(tax, getTotalPrice());
+  const shippingCost = getTotalPrice() > 30 ? 0 : 5;
 
   React.useEffect(() => {
     localStorage.setItem("storeItems", JSON.stringify(storeItems));
@@ -213,6 +220,8 @@ export function StoreProvider({ children }: StoreProviderProps) {
         userInfo,
         shippingAddress,
         paymentMethod,
+        taxCost,
+        shippingCost,
         setUser,
         signOut,
         addToInventory,

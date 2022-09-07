@@ -11,6 +11,7 @@ import { useStore } from "./contexts/StoreContext";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import PaymentMethod from "./screens/PaymentMethod";
 import PlaceOrder from "./screens/PlaceOrder";
+import OrderScreen from "./screens/OrderScreen";
 
 function App() {
   const { userInfo } = useStore();
@@ -27,6 +28,7 @@ function App() {
           <Route path="/payment" element={<PaymentMethod />} />
           <Route path="/placeorder" element={<PlaceOrder />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/orders/:id" element={<OrderScreen />} />
         </Routes>
       </div>
     </StoreProvider>
