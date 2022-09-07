@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import App from "../App";
 import Navbar from "../components/Navbar";
-import Store from "../components/Store";
+import Store from "../screens/Store";
 import { BrowserRouter } from "react-router-dom" 
 import { useStore } from "../contexts/StoreContext";
 

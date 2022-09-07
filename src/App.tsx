@@ -1,14 +1,15 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Homepage from "./components/Home";
-import Store from "./components/Store";
-import SignUp from "./components/SignUp";
-import SignIn from "./components/SignIn";
+import Homepage from "./screens/Home";
+import Store from "./screens/Store";
+import SignUp from "./screens/SignUp";
+import SignIn from "./screens/SignIn";
 import { StoreProvider } from "./contexts/StoreContext";
 import Account from "./components/Account";
 import { useStore } from "./contexts/StoreContext";
-import ShippingAddressScreen from "./components/ShippingAddressScreen";
+import ShippingAddressScreen from "./screens/ShippingAddressScreen";
+import PaymentMethod from "./screens/PaymentMethod";
 
 function App() {
   const { userInfo } = useStore();
@@ -22,6 +23,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/shipping" element={<ShippingAddressScreen />} />
+          <Route path="/payment" element={<PaymentMethod />} />
           <Route path="/account" element={<Account />} />
         </Routes>
       </div>

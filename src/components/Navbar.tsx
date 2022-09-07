@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useStore } from "../contexts/StoreContext";
 import styles from "../styles/Navbar.module.css";
-import Cart from "./Cart";
+import Cart from "../screens/Cart";
 
 const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = React.useState(false);
