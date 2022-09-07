@@ -12,19 +12,7 @@ type CartProps = {
 const Cart = ({ isOpen, setIsCartOpen }: CartProps) => {
   const navigate = useNavigate();
 
-  const { cartItems, storeItems, userInfo } = useStore();
-
-  const totalPrice = () => {
-    return (
-      <div className={styles.totalPrice}>
-        <span>Total: $</span>
-        {cartItems.reduce((total, cartItem) => {
-          const item = storeItems.find((item) => item._id === cartItem._id);
-          return total + (item?.price || 0) * cartItem.quantity;
-        }, 0)}
-      </div>
-    );
-  };
+  const { cartItems, storeItems, userInfo, getTotalPrice } = useStore();
 
   const emptyCartMsg = () => {
     return (
@@ -79,7 +67,11 @@ const Cart = ({ isOpen, setIsCartOpen }: CartProps) => {
           })}
         </div>
         <div className={styles.totalPriceContainer}>
-          {cartItems.length > 0 ? totalPrice() : emptyCartMsg()}
+          {cartItems.length > 0 ? (
+            <div className={styles.totalPrice}><span>Total: $</span>{getTotalPrice()}</div>
+          ) : (
+            emptyCartMsg()
+          )}
         </div>
         <div className={styles.checkOutBtns}>
           {cartItems.length > 0 ? (

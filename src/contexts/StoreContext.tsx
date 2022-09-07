@@ -1,4 +1,5 @@
 import React, { createContext, useContext, ReactNode } from "react";
+import styles from "../styles/Cart.module.css"
 import Store from "../screens/Store";
 
 type StoreProviderProps = {
@@ -22,6 +23,8 @@ type StoreContext = {
   increaseCartQuantity: (_id: string) => void;
   decreaseCartQuantity: (_id: string) => void;
   removeFromCart: (_id: string) => void;
+  getTax: (tax: number, totalCost: number) => number;
+  getTotalPrice: () => number;
   cartItems: CartItem[];
 };
 
@@ -49,15 +52,10 @@ type Address = {
   zipCode: string;
 };
 
-type CartProviderProps = {
-  children: ReactNode;
-};
-
 type CartItem = {
   _id: string;
   quantity: number;
 };
-
 
 const defaultAddress = {
   firstName: "",
@@ -75,7 +73,10 @@ export function useStore() {
 }
 
 export function StoreProvider({ children }: StoreProviderProps) {
-  const [storeItems, setStoreItems] = React.useState<StoreItem[]>([]);
+  const [storeItems, setStoreItems] = React.useState<StoreItem[]>(
+    localStorage.getItem("storeItems")
+    ? JSON.parse(localStorage.getItem("storeItems")!)
+    : []);
   const [userInfo, setUserInfo] = React.useState<UserData | any>(
     localStorage.getItem("userInfo")
       ? JSON.parse(localStorage.getItem("userInfo")!)
@@ -86,12 +87,20 @@ export function StoreProvider({ children }: StoreProviderProps) {
       ? JSON.parse(localStorage.getItem("shippingAddress")!)
       : defaultAddress
   );
-  const [paymentMethod, setPaymentMethod] = React.useState<string>('')
+  const [paymentMethod, setPaymentMethod] = React.useState<string>(
+    localStorage.getItem("paymentMethod")
+      ? localStorage.getItem("paymentMethod")!
+      : ""
+  );
   const [cartItems, setCartItems] = React.useState<CartItem[]>(
     localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems")!)
       : []
   );
+
+  React.useEffect(() => {
+    localStorage.setItem("storeItems", JSON.stringify(storeItems));
+  }, [storeItems])
 
   React.useEffect(() => {
     localStorage.setItem("shippingAddress", JSON.stringify(shippingAddress));
@@ -100,6 +109,10 @@ export function StoreProvider({ children }: StoreProviderProps) {
   React.useEffect(() => {
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
   }, [userInfo]);
+
+  React.useEffect(() => {
+    localStorage.setItem("paymentMethod", JSON.stringify(paymentMethod));
+  }, [paymentMethod]);
 
   React.useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -118,11 +131,17 @@ export function StoreProvider({ children }: StoreProviderProps) {
   function signOut() {
     setUserInfo(null);
     setShippingAddress(defaultAddress);
+    setPaymentMethod("");
     setCartItems([]);
+
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("shippingAddress");
+    localStorage.removeItem("paymentMethod");
+    localStorage.removeItem("cartItems");
   }
 
   function updateCartAddress(newAddress: Address) {
-    setShippingAddress({ ...shippingAddress, newAddress } as Address);
+    setShippingAddress( newAddress );
   }
 
   // Cart methods
@@ -172,6 +191,18 @@ export function StoreProvider({ children }: StoreProviderProps) {
     });
   }
 
+  function getTax(tax: number, totalCost: number) {
+    return totalCost * tax
+  }
+
+  function getTotalPrice() {
+    return cartItems.reduce((total, cartItem) => {
+          const item = storeItems.find((item: any) => item._id === cartItem._id);
+            const itemsCost = (item?.price || 0) * cartItem.quantity
+            return total + itemsCost
+        }, 0)
+  };
+
   return (
     <StoreContext.Provider
       value={{
@@ -189,6 +220,8 @@ export function StoreProvider({ children }: StoreProviderProps) {
         increaseCartQuantity,
         decreaseCartQuantity,
         removeFromCart,
+        getTax,
+        getTotalPrice,
         cartItems,
       }}
     >

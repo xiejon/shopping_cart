@@ -34,6 +34,7 @@ const ShippingAddressScreen = () => {
   const submitHandler = (e: any) => {
     e.preventDefault();
     updateCartAddress(address);
+    localStorage.setItem("shippingAddress", JSON.stringify(address))
     navigate("/payment");
   };
 

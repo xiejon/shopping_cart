@@ -20,7 +20,7 @@ const PaymentMethod = () => {
   const submitHandler = (e: any) => {
     e.preventDefault();
     setPaymentMethod(paymentType);
-    localStorage.setItem("paymentMethod", JSON.stringify(paymentMethod));
+    localStorage.setItem("paymentMethod", paymentMethod);
     navigate("/placeorder");
   };
 

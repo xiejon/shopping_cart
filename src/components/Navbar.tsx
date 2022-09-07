@@ -7,7 +7,7 @@ import Cart from "../screens/Cart";
 const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = React.useState(false);
 
-  const { userInfo, getCartQuantity } = useStore()
+  const { userInfo, getCartQuantity, cartItems } = useStore();
 
   const quantity = getCartQuantity();
 
@@ -39,7 +39,7 @@ const Navbar = () => {
           <Link className={styles.link} to="/store">
             Store
           </Link>
-          <Link className={styles.link} to={userInfo ? '/account' : '/signin'}>
+          <Link className={styles.link} to={userInfo ? "/account" : "/signin"}>
             Account
           </Link>
           <button
