@@ -3,6 +3,7 @@ import styles from "../styles/PlaceOrder.module.css";
 import { useStore } from "../contexts/StoreContext";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import CartItem from "../components/CartItem";
+import { roundNum } from "../utils";
 import axios from "axios";
 
 const reducer = (state: any, action: any) => {
@@ -90,9 +91,6 @@ const PlaceOrder = () => {
     const item = storeItems.find((item) => item._id === _id);
     return item;
   };
-
-  const roundNum = (num: number) =>
-    Math.round(num * 100 + Number.EPSILON) / 100;
 
   return (
     <div className={styles.container}>

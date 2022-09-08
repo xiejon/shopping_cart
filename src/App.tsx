@@ -12,6 +12,7 @@ import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import PaymentMethod from "./screens/PaymentMethod";
 import PlaceOrder from "./screens/PlaceOrder";
 import OrderScreen from "./screens/OrderScreen";
+import OrderHistoryScreen from "./screens/OrderHistory";
 
 function App() {
   const { userInfo } = useStore();
@@ -28,6 +29,7 @@ function App() {
           <Route path="/payment" element={<PaymentMethod />} />
           <Route path="/placeorder" element={<PlaceOrder />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/orderhistory" element={<OrderHistoryScreen />}></Route>
           <Route path="/orders/:id" element={<OrderScreen />} />
         </Routes>
       </div>

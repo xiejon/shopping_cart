@@ -3,6 +3,7 @@ import React from "react";
 import styles from "../styles/OrderScreen.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useStore } from "../contexts/StoreContext";
+import { roundNum } from "../utils";
 import { PayPalButtons, SCRIPT_LOADING_STATE, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { toast } from 'react-toastify';
 import {getError} from '../utils'
@@ -138,9 +139,6 @@ const OrderScreen = () => {
     const item = storeItems.find((item) => item._id === _id);
     return item;
   };
-
-  const roundNum = (num: number) =>
-    Math.round(num * 100 + Number.EPSILON) / 100;
 
   return loading ? (
     <div className={styles.loadingText}>Loading...</div>

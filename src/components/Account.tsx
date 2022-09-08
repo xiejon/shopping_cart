@@ -39,7 +39,7 @@ const Account = () => {
             <Link to="/">Profile</Link>
           </div>
           <div className={styles.orders}>
-            <Link to="/">Orders</Link>
+            <Link to="/orderhistory">Orders</Link>
           </div>
         </div>
         <div className={styles.signOut}>
