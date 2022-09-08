@@ -36,7 +36,7 @@ const Account = () => {
         </div>
         <div className={styles.links}>
           <div className={styles.editProfile}>
-            <Link to="/">Profile</Link>
+            <Link to="/profile">Profile</Link>
           </div>
           <div className={styles.orders}>
             <Link to="/orderhistory">Orders</Link>

@@ -76,56 +76,62 @@ const OrderHistoryScreen = () => {
   }, [userInfo]);
 
   return (
-    <div>
+    <div className={styles.container}>
+        <img
+        className={styles.bg}
+        src={require("../resources/images/store-bg.jpg")}
+        alt="tea"
+      ></img>
       <h1>Order History</h1>
       {loading ? (
         <div className={styles.loadingText}>Loading...</div>
       ) : error ? (
         <div className={styles.loadingText}>{error}</div>
       ) : (
-        <TableContainer component={Card}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell align="right">DATE</TableCell>
-                <TableCell align="right">TOTAL</TableCell>
-                <TableCell align="right">PAID</TableCell>
-                <TableCell align="right">DELIVERED</TableCell>
-                <TableCell align="right">ACTIONS</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {orders.map((order: any) => (
-                <TableRow
-                  key={order._id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {order._id}
-                  </TableCell>
-                  <TableCell align="right">
-                    {order.createdAt.substring(0, 10)}
-                  </TableCell>
-                  <TableCell align="right">
-                    {roundNum(order.totalPrice)}
-                  </TableCell>
-                  <TableCell align="right">
-                    {order.isPaid ? order.paidAt.substring(0, 10) : "No"}
-                  </TableCell>
-                  <TableCell align="right">
-                    {order.isDelivered
-                      ? order.deliveredAt.substring(0, 10)
-                      : "No"}
-                  </TableCell>
-                  <TableCell align="right">
-                    <button type="button" onClick={() => navigate(`/orders/${order._id}`)}>Details</button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <div className={styles.main}>
+            <TableContainer component={Card} className={styles.container}>
+              <Table aria-label="simple table">
+                <TableHead>
+                  <TableRow className={styles.tableHead}>
+                    <TableCell className={styles.tableHeadLabel}>ID</TableCell>
+                    <TableCell className={styles.tableHeadLabel} align="right">DATE</TableCell>
+                    <TableCell className={styles.tableHeadLabel} align="right">TOTAL</TableCell>
+                    <TableCell className={styles.tableHeadLabel} align="right">PAID</TableCell>
+                    <TableCell className={styles.tableHeadLabel} align="right">DELIVERED</TableCell>
+                    <TableCell className={styles.tableHeadLabel} align="right">ACTIONS</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {orders.map((order: any) => (
+                    <TableRow
+                      key={order._id}
+                    >
+                      <TableCell className={styles.tableCell} component="th" scope="row">
+                        {order._id}
+                      </TableCell>
+                      <TableCell className={styles.tableCell} align="right">
+                        {order.createdAt.substring(0, 10)}
+                      </TableCell>
+                      <TableCell className={styles.tableCell} align="right">
+                        {'$' + roundNum(order.totalPrice)}
+                      </TableCell>
+                      <TableCell className={styles.tableCell} align="right">
+                        {order.isPaid ? order.paidAt.substring(0, 10) : "No"}
+                      </TableCell>
+                      <TableCell className={styles.tableCell} align="right">
+                        {order.isDelivered
+                          ? order.deliveredAt.substring(0, 10)
+                          : "No"}
+                      </TableCell>
+                      <TableCell align="right">
+                        <button className={styles.details} type="button" onClick={() => navigate(`/orders/${order._id}`)}>Details</button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+        </div>
       )}
     </div>
   );

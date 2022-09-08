@@ -1,40 +1,51 @@
 import React from "react";
-import styles from "../styles/SignUp.module.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Link, useLocation } from "react-router-dom";
+import styles from "../styles/Profile.module.css";
 import { useStore } from "../contexts/StoreContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import {toast} from 'react-toastify'
+import { getError } from "../utils";
 
-const SignUp = () => {
+const Profile = () => {
+  const { userInfo, setUser } = useStore();
   const navigate = useNavigate();
-  const { search } = useLocation();
-  const redirectInURL = new URLSearchParams(search).get("redirect");
-  const redirect = redirectInURL ? redirectInURL : "/";
 
-  const { setUser } = useStore();
+  const [name, setName] = React.useState<string>(userInfo.name);
+  const [email, setEmail] = React.useState<string>(userInfo.email);
+  const [password, setPassword] = React.useState<string>("");
+  const [confirmedPassword, setConfirmedPassword] = React.useState<string>("");
 
-  const [name, setName] = React.useState<String>("");
-  const [email, setEmail] = React.useState<String>("");
-  const [password, setPassword] = React.useState<String>("");
-  const [confirmedPassword, setConfirmedPassword] = React.useState<String>("");
+  React.useEffect(() => {
+    if (!userInfo) {
+      navigate("/signin");
+    }
+  });
 
   const submitHandler = async (e: any) => {
     e.preventDefault();
     try {
-        if (password !== confirmedPassword) {
-            alert("Passwords do not match")
-            return
+      if (password !== confirmedPassword) {
+        alert("Passwords do not match");
+        return;
+      }
+      const { data } = await axios.put(
+        "/api/users/profile",
+        {
+          name,
+          email,
+          password,
+        },
+        {
+          headers: {
+            authorization: `Bearer: ${userInfo.token}`,
+          },
         }
-      const { data } = await axios.post("/api/users/signup", {
-        name,
-        email,
-        password,
-      });
+      );
       setUser(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
-      navigate(redirect || "/");
+      toast("Profile updated successfully")
     } catch (err) {
-      alert("Invalid email or password");
+      toast(getError(err));
     }
   };
 
@@ -45,10 +56,9 @@ const SignUp = () => {
         src={require("../resources/images/store-bg.jpg")}
         alt="tea"
       ></img>
-      <h2 className={styles.header}>Create Account</h2>
+      <h2 className={styles.header}>Profile</h2>
       <form
         onSubmit={submitHandler}
-        action="/signin"
         method="post"
         id="signin"
         className={styles.form}
@@ -56,6 +66,7 @@ const SignUp = () => {
         <div className={styles.field}>
           <label htmlFor="email">Name</label>
           <input
+            value={name}
             onChange={(e) => setName(e.target.value)}
             type="text"
             id="name"
@@ -67,6 +78,7 @@ const SignUp = () => {
         <div className={styles.field}>
           <label htmlFor="email">Email</label>
           <input
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="text"
             id="email"
@@ -98,18 +110,11 @@ const SignUp = () => {
           />
         </div>
         <div className={styles.submit}>
-          <button type="submit">Sign Up</button>
-        </div>
-        <div className={styles.createAccount}>
-          <div></div>
-          Already have an account?
-          <Link to={`/signup?redirect=${redirect}`} className={styles.link}>
-            Sign In
-          </Link>
+          <button type="submit">Update</button>
         </div>
       </form>
     </div>
   );
 };
 
-export default SignUp;
+export default Profile;

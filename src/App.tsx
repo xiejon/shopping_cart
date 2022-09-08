@@ -6,16 +6,16 @@ import Store from "./screens/Store";
 import SignUp from "./screens/SignUp";
 import SignIn from "./screens/SignIn";
 import { StoreProvider } from "./contexts/StoreContext";
-import Account from "./components/Account";
+import Account from "./screens/Account";
 import { useStore } from "./contexts/StoreContext";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import PaymentMethod from "./screens/PaymentMethod";
 import PlaceOrder from "./screens/PlaceOrder";
 import OrderScreen from "./screens/OrderScreen";
 import OrderHistoryScreen from "./screens/OrderHistory";
+import Profile from "./screens/Profile";
 
 function App() {
-  const { userInfo } = useStore();
   return (
     <StoreProvider>
       <div className="App">
@@ -25,6 +25,7 @@ function App() {
           <Route path="/store" element={<Store />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/shipping" element={<ShippingAddressScreen />} />
           <Route path="/payment" element={<PaymentMethod />} />
           <Route path="/placeorder" element={<PlaceOrder />} />

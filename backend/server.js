@@ -5,8 +5,21 @@ import seedRouter from "./routes/seedRoutes.js";
 import productRouter from "./routes/productRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import orderRouter from "./routes/orderRoutes.js";
+import path from "path";
+import { loadStripe } from "@stripe/stripe-js";
+import Stripe from "stripe";
 
 dotenv.config();
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+
+const stripeChargeCallback = (res) => (stripeErr, stripeRes) => {
+  if (stripeErr) {
+    res.status(500).send({ error: stripeErr });
+  } else {
+    res.status(200).send({ success: stripeRes });
+  }
+};
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -18,19 +31,39 @@ mongoose
   });
 
 const app = express();
-// const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/api/keys/paypal', (req, res) => {
-    res.send(process.env.PAYPAL_CLIENT_ID || 'sb')
-})
+app.get("/api/keys/paypal", (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID || "sb");
+});
 
 app.use("/api/seed", seedRouter);
 app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
+
+app.post("/create-payment-intent", async (req, res) => {
+    try {
+        const totalPrice = req.body.totalPrice
+        
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: totalPrice * 100,
+            currency: "usd"
+          });
+
+        res.status(200).send(paymentIntent.client_secret)
+    } catch (err) {
+        res.status(500).json({statusCode: 500, message: err.message})
+    }
+});
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/build/index.html"));
+});
 
 const port = process.env.PORT || 8000;
 
