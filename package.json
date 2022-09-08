@@ -1,0 +1,21 @@
+{
+  "name": "shopping_cart",
+  "version": "1.0.0",
+  "description": "An e-commerce site for a demo tea shop, built with Typescript and React.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd backend && npm install && cd ../frontend && npm install && npm run build",
+    "start": "node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiejon/shopping_cart.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiejon/shopping_cart/issues"
+  },
+  "homepage": "https://github.com/xiejon/shopping_cart#readme"
+}

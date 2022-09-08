@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/shopping_cart/static/css/main.f55698a1.css",
-    "main.js": "/shopping_cart/static/js/main.84d202eb.js",
+    "main.css": "/shopping_cart/static/css/main.8fc17f11.css",
+    "main.js": "/shopping_cart/static/js/main.8f723076.js",
     "static/media/store-bg.jpg": "/shopping_cart/static/media/store-bg.1fb7db21281467c2b73d.jpg",
     "static/media/home-bg.jpg": "/shopping_cart/static/media/home-bg.4869d85d2ddc7a04e775.jpg",
     "static/media/Montserrat-Italic-VariableFont_wght.ttf": "/shopping_cart/static/media/Montserrat-Italic-VariableFont_wght.ef11b720b9a6cfb9a317.ttf",
     "static/media/BebasNeue-Regular.ttf": "/shopping_cart/static/media/BebasNeue-Regular.12e3683f9192436a7be8.ttf",
     "index.html": "/shopping_cart/index.html",
-    "main.f55698a1.css.map": "/shopping_cart/static/css/main.f55698a1.css.map",
-    "main.84d202eb.js.map": "/shopping_cart/static/js/main.84d202eb.js.map"
+    "main.8fc17f11.css.map": "/shopping_cart/static/css/main.8fc17f11.css.map",
+    "main.8f723076.js.map": "/shopping_cart/static/js/main.8f723076.js.map"
   },
   "entrypoints": [
-    "static/css/main.f55698a1.css",
-    "static/js/main.84d202eb.js"
+    "static/css/main.8fc17f11.css",
+    "static/js/main.8f723076.js"
   ]
 }
