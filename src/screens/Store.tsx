@@ -63,7 +63,7 @@ const Store = () => {
         {loading ? (
           <div className={styles.loadingText}>Loading...</div>
         ) : error ? (
-          <div>{error}</div>
+          <div className={styles.loadingText}>{error}</div>
         ) : (
           items.map((item: any) => {
             return (

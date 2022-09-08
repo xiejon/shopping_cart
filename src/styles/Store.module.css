@@ -33,7 +33,12 @@
 }
 
 .loadingText {
+  height: 20vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: "Bebas-Neue";
   font-size: 50px;
+  text-align: center;
   color: black;
 }

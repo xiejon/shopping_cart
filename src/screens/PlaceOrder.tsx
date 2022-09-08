@@ -166,9 +166,9 @@ const PlaceOrder = () => {
                 })}
               </div>
               <div className={styles.shipping}>
-                {`Shipping: ${shippingCost > 0 ? shippingCost : "FREE"}`}
+                {`Shipping: ${shippingCost > 0 ? "$" + shippingCost : "FREE"}`}
               </div>
-              <div className={styles.tax}>{`Tax: $${taxCost}`}</div>
+              <div className={styles.tax}>{`Tax: $${roundNum(taxCost)}`}</div>
               <div className={styles.field}>
                 {cartItems ? (
                   <div className={styles.totalPrice}>
