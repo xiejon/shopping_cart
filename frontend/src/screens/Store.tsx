@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import logger from "use-reducer-logger";
 import styles from "../styles/Store.module.css";
 import StoreItem from "../components/StoreItem";
 import { useStore } from "../contexts/StoreContext";
@@ -22,16 +21,13 @@ function getErrorMessage(error: unknown) {
 }
 
 const Store = () => {
-  const [{ loading, error, items }, dispatch] = React.useReducer(
-    logger(reducer),
-    {
-      items: [],
-      loading: true,
-      error: "",
-    }
-  );
+  const [{ loading, error, items }, dispatch] = React.useReducer(reducer, {
+    items: [],
+    loading: true,
+    error: "",
+  });
 
-  const { addToInventory } = useStore()
+  const { addToInventory } = useStore();
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -39,12 +35,11 @@ const Store = () => {
       try {
         const result = await axios.get("/api/products");
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
-        
-        // Add items to store context 
-        for (let item of result.data) {
-          addToInventory(item)
-        }
 
+        // Add items to store context
+        for (let item of result.data) {
+          addToInventory(item);
+        }
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getErrorMessage(err) });
       }
