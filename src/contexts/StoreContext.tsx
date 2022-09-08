@@ -144,7 +144,7 @@ export function StoreProvider({ children }: StoreProviderProps) {
     localStorage.removeItem("shippingAddress");
     localStorage.removeItem("paymentMethod");
 
-    window.location.href = '/signin'
+    window.location.href = '/shopping_cart/signin'
   }
 
   function updateCartAddress(newAddress: Address) {

@@ -16,7 +16,9 @@ type Order = {
   _id?: string;
 };
 
-const stripePromise = loadStripe("pk_live_51Hg7IbBKin9EvEk4k76mWX2anlkvbGnRBGB03pCi4WERzFKF5ILkAdeQBnKhZdCr0hyiDpibLLjQGXdNgrT5a3B400ghsnOzC2")
+const stripePromise = loadStripe(
+  "pk_live_51Hg7IbBKin9EvEk4k76mWX2anlkvbGnRBGB03pCi4WERzFKF5ILkAdeQBnKhZdCr0hyiDpibLLjQGXdNgrT5a3B400ghsnOzC2"
+);
 
 const loadPaypalScript = async (token: string, paypalDispatch: any) => {
   const { data: clientId } = await axios.get(`/api/keys/paypal`, {
@@ -143,13 +145,15 @@ const OrderScreen = () => {
       } else {
         // Stripe
         const createPaymentIntent = async () => {
-          const {data: clientSecret} = await axios
-            .post("/create-payment-intent", {
-              totalPrice: order.totalPrice
-            })
-          setClientSecret(clientSecret)
+          const { data: clientSecret } = await axios.post(
+            "/create-payment-intent",
+            {
+              totalPrice: order.totalPrice,
+            }
+          );
+          setClientSecret(clientSecret);
         };
-        createPaymentIntent()
+        createPaymentIntent();
       }
     }
   }, [
@@ -163,7 +167,7 @@ const OrderScreen = () => {
   ]);
 
   const appearance = {
-    theme: 'stripe',
+    theme: "stripe",
   };
   const options: any = {
     clientSecret,
@@ -269,10 +273,14 @@ const OrderScreen = () => {
                     onError={onError}
                   ></PayPalButtons>
                 </div>
-              ) : clientSecret && (
-                <Elements options={options} stripe={stripePromise}>
-                    <PaymentForm />
-                  </Elements>
+              ) : (
+                clientSecret && (
+                  <div className={styles.stripe}>
+                    <Elements options={options} stripe={stripePromise}>
+                      <PaymentForm />
+                    </Elements>
+                  </div>
+                )
               )}
             </div>
           </div>
@@ -283,4 +291,3 @@ const OrderScreen = () => {
 };
 
 export default OrderScreen;
-
