@@ -63,7 +63,7 @@ const PlaceOrder = () => {
             return { ...item, quantity: cartItem.quantity };
           }),
           shippingAddress: shippingAddress,
-          paymentMethod: paymentMethod,
+          paymentMethod: `${paymentMethod.replace(/\W/g, "")}`,
           itemsCost: getTotalPrice(),
           shippingCost: shippingCost,
           taxCost: taxCost,
