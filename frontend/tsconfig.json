@@ -22,6 +22,6 @@
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": [
-    "src"
+    "frontend/src"
   ]
 }
