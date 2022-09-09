@@ -4,7 +4,7 @@ An e-commerce site for a demo tea shop. Built with React and Typescript on the f
 
 Viewable at https://puer-tea-co.herokuapp.com/
 
-![demo](./src/resources/images/readme.gif)
+![demo](./frontend/src/resources/images/readme.gif)
 
 ## Objectives 
 
